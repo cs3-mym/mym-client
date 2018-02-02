@@ -42,10 +42,10 @@ class LoginPage extends React.Component {
         password
       })
       .then((res) => {
-        if (res) {
+        if (res) { // TODO: Check if status is 200.
           // console.log(res);
           this.setState({
-            token: res.data.token,
+            token: res.data,
             submitted: true
           });
         }
@@ -77,6 +77,7 @@ class LoginPage extends React.Component {
       } else {
         return (
           <div style={{background: "lightgray", boxShadow: "2px 2px 2px #888888", padding: "10px"}}>
+            <p style={{width: "600px", overflowWrap: "break-word", wordWrap: "break-word"}}> Welcome. </p>
             <p style={{width: "600px", overflowWrap: "break-word", wordWrap: "break-word"}}> Token received : {this.state.token} </p>
             <DefaultButton primary={true} onClick={this.signOut.bind(this)}>Sign Out</DefaultButton>
           </div>
@@ -124,7 +125,7 @@ class LoginPage extends React.Component {
 
   render() {
     return (
-      <div style={{height: "100%", width: "100%", display: "flex", flexFlow: "column", justifyContent: "center", alignItems: "center"}}>
+      <div style={{height: "100vh", width: "100%", display: "flex", flexFlow: "column", justifyContent: "center", alignItems: "center"}}>
         {this.conditionalRender()}
       </div>
     );
