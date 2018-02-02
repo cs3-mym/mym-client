@@ -13,13 +13,13 @@ import {
   PROD_SITE_ROOT
 } from '../variables/connections.js';
 
-let home;
+let home = PROD_SITE_ROOT;
 
-if (process.env.NODE_ENV === "production") {
-  home = PROD_SITE_ROOT;
-} else {
-  home = DEV_SITE_ROOT;
-}
+// if (process.env.NODE_ENV === "production") {
+//   home = PROD_SITE_ROOT;
+// } else {
+//   home = DEV_SITE_ROOT;
+// }
 
 class HomePage extends React.Component {
   render() {
