@@ -11,12 +11,24 @@ import {
 } from 'office-ui-fabric-react/lib/TextField';
 
 import {
-  SERVER_URI
+  DEV_SERVER_URI,
+  DEV_SITE_ROOT,
+  PROD_SERVER_URI,
+  PROD_SITE_ROOT
 } from '../variables/connections.js';
 
-const createPath = '/users/create';
-const removeTokenPath = '/users/me/token';
-const home = 'http://localhost:3000/'
+let serverUri;
+let home;
+if (process.env.NODE_ENV === "production") {
+  serverUri = PROD_SERVER_URI;
+  home = PROD_SITE_ROOT;
+} else {
+  serverUri = DEV_SERVER_URI;
+  home = DEV_SITE_ROOT;
+}
+
+const createPath = 'users/create';
+const removeTokenPath = 'users/me/token';
 
 class RegistrationPage extends React.Component {
 
@@ -36,7 +48,7 @@ class RegistrationPage extends React.Component {
   }
 
   signOut() {
-    axios.delete(SERVER_URI + removeTokenPath, {
+    axios.delete(serverUri + removeTokenPath, {
         params: {
           token: this.state.token
         }
@@ -60,7 +72,7 @@ class RegistrationPage extends React.Component {
     const password2 = event.target.password2.value;
 
     if (password === password2) {
-      axios.post(SERVER_URI + createPath, {
+      axios.post(serverUri + createPath, {
           username,
           email,
           password
