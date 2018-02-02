@@ -8,6 +8,19 @@ import {
   DefaultButton
 } from 'office-ui-fabric-react/lib/Button';
 
+import {
+  DEV_SITE_ROOT,
+  PROD_SITE_ROOT
+} from '../variables/connections.js';
+
+let home;
+
+if (process.env.NODE_ENV === "production") {
+  home = PROD_SITE_ROOT;
+} else {
+  home = DEV_SITE_ROOT;
+}
+
 class HomePage extends React.Component {
   render() {
     return (
@@ -20,12 +33,12 @@ class HomePage extends React.Component {
             <DefaultButton
               text="Login"
               primary={true}
-              href='http://localhost:3000/login'
+              href={`${home}login`}
             />
             <DefaultButton
               text="Signup"
               primary={false}
-              href='http://localhost:3000/signup'
+              href={`${home}signup`}
             />
           </div>
         </div>

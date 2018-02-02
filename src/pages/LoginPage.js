@@ -18,15 +18,15 @@ import {
   PROD_SITE_ROOT
 } from '../variables/connections.js';
 
-let serverUri = PROD_SERVER_URI;
-let home = PROD_SITE_ROOT;
-// if (process.env.NODE_ENV === "production") {
-//   serverUri = PROD_SERVER_URI;
-//   home = PROD_SITE_ROOT;
-// } else {
-//   serverUri = DEV_SERVER_URI;
-//   home = DEV_SITE_ROOT;
-// }
+let serverUri; // = PROD_SERVER_URI;
+let home; // = PROD_SITE_ROOT;
+if (process.env.NODE_ENV === "production") {
+  serverUri = PROD_SERVER_URI;
+  home = PROD_SITE_ROOT;
+} else {
+  serverUri = DEV_SERVER_URI;
+  home = DEV_SITE_ROOT;
+}
 
 const loginPath = 'users/login';
 const removeTokenPath = 'users/me/token';
