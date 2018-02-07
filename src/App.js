@@ -12,8 +12,9 @@ import HomePage from './pages/HomePage.js';
 import LoginPage from './pages/LoginPage.js';
 import RegistrationPage from './pages/RegistrationPage.js';
 import WorkbenchPage from './pages/WorkbenchPage.js';
-import DevelopersDepot from './pages/DevelopersDepot.js';
+import DevelopersDepot from './pages/ProjectsDepot.js';
 import TechDepot from './pages/TechDepot.js';
+import DiscussionsDepot from './pages/DiscussionsDepot.js';
 // import SignInPage from './pages/SignInPage.js';
 // import DefaultPage from './pages/DefaultPage.js';
 // import ProjectSearchPage from './pages/ProjectSearch.js';
@@ -35,6 +36,7 @@ class App extends Component {
         {/* <Route exact path="/projects2" component={ProjectSearch2}/> */}
         <Route exact path="/projects/search" component={DevelopersDepot}/>
         <Route exact path="/tech/search" component={TechDepot}/>
+        <Route exact path="/discussions/search" component={DiscussionsDepot}/>
         {/* <Route exact path="/dashboard" component={DashboardPage}/> */}
       </div>
     );

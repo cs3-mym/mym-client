@@ -1,9 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 
-import CreateProjectDetails from './CreateProjectDetails.js';
-import CreateUserStories from './CreateProjectStories.js';
-import CreateProjectInvites from './CreateProjectInvites.js';
+// import CreateProjectDetails from './CreateProjectDetails.js';
+// import CreateUserStories from './CreateProjectStories.js';
+// import CreateProjectInvites from './CreateProjectInvites.js';
 
 import {
   DEV_SERVER_URI
@@ -55,7 +55,7 @@ class CreateProjectPage extends React.Component {
         technologies: this.state.technologies
       })
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         this.setState({
           project: res.data,
           submitted: true
@@ -98,7 +98,7 @@ class CreateProjectPage extends React.Component {
             <p style={{color: "white"}}>Status </p>
             <input type="text" name="status"  onChange={this.handleChange.bind(this)} value={this.state.status} style={{background: "#18192F", border: "0px solid", outline: "none", color: "white"}}/>
             <p style={{color: "white"}}>Visibility </p>
-            <select type="text" name="access" onChange={this.handleChange.bind(this)} value={this.state.visibility}>
+            <select type="text" name="visibility" onChange={this.handleChange.bind(this)} value={this.state.visibility}>
               <option value="visible">Visible</option>
               <option value="hidden">Hidden</option>
             </select>
