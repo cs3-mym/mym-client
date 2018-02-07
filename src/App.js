@@ -11,7 +11,9 @@ import {
 import HomePage from './pages/HomePage.js';
 import LoginPage from './pages/LoginPage.js';
 import RegistrationPage from './pages/RegistrationPage.js';
-
+import WorkbenchPage from './pages/WorkbenchPage.js';
+import DevelopersDepot from './pages/DevelopersDepot.js';
+import TechDepot from './pages/TechDepot.js';
 // import SignInPage from './pages/SignInPage.js';
 // import DefaultPage from './pages/DefaultPage.js';
 // import ProjectSearchPage from './pages/ProjectSearch.js';
@@ -26,10 +28,13 @@ class App extends Component {
         <Route exact path="/" component={HomePage}/>
         <Route exact path="/login" component={LoginPage}/>
         <Route exact path="/signup" component={RegistrationPage}/>
+        <Route exact path="/workbench" component={WorkbenchPage}/>
         {/* <Route exact path="/profile" component={ProfilePage}/> */}
         {/* <Route exact path="/signin" component={SignInPage}/> */}
         {/* <Route exact path="/projects" component={ProjectSearchPage}/> */}
         {/* <Route exact path="/projects2" component={ProjectSearch2}/> */}
+        <Route exact path="/projects/search" component={DevelopersDepot}/>
+        <Route exact path="/tech/search" component={TechDepot}/>
         {/* <Route exact path="/dashboard" component={DashboardPage}/> */}
       </div>
     );
