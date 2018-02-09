@@ -84,7 +84,7 @@ class DiscussionDepot extends React.Component {
       );
     } else {
       return (
-        <div style={{width: "100%", display: "flex", flexFlow: "column", alignItems:"center", justifyContent: "center", padding: "20px", border: "1px dotted white"}}>
+        <div style={{width: "100%", display: "flex", flexFlow: "column", alignItems:"center", padding: "20px"}}>
           <DiscussionsList discussions={this.state.discussions}/>
         </div>
       );
@@ -92,9 +92,11 @@ class DiscussionDepot extends React.Component {
   }
 
   render() {
+    // #212a49
+    // #28294f
     return (
-      <div style={{width: "100%", background: "lightgray", display: "flex", flexFlow: "column", alignItems: "center"}}>
-        <div style={{width: "80%", background: "#28294f", display: "flex", flexFlow: "column", alignItems:"center", justifyContent: "center", padding: "20px"}}>
+      <div style={{width: "100%", background: "#212a49", display: "flex", flexFlow: "column", alignItems: "center", minHeight: "100vh"}}>
+        <div style={{width: "80%", background: "#212a49", display: "flex", flexFlow: "column", alignItems:"center", justifyContent: "center", padding: "20px"}}>
           <h2 style={{color: "white"}}>Discussions Depot</h2>
           <input value={this.state.input} onChange={this.handleChange.bind(this)} style={{background: "#18192F", border: "0px solid", outline: "none", color: "white"}}/>
           <div style={{display: "flex", flexFlow: "row", width: "100%", justifyContent: "center"}}>
@@ -103,7 +105,7 @@ class DiscussionDepot extends React.Component {
             <p style={{background: "#DFAE3B", color: "#18192F", padding: "5px"}}>Tag:Innovation</p>
           </div>
           <div style={{width: "100%", display: "flex", flexFlow: "row", padding: "30px"}}>
-            <div style={{width: "200px", display: "flex", flexFlow: "column", alignItems: "center", border: "1px dotted white"}}>
+            <div style={{width: "200px", display: "flex", flexFlow: "column", alignItems: "center"}}>
               <p style={{height:"30px", width: "120px", background: "#DFAE3B", color: "#18192F", padding: "5px"}}>Feedback</p>
               <p style={{height:"30px", width: "120px", background: "#DFAE3B", color: "#18192F", padding: "5px"}}>Tech</p>
               <p style={{height:"30px", width: "120px", background: "#DFAE3B", color: "#18192F", padding: "5px"}}>Ideas</p>

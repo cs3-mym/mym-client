@@ -9,12 +9,17 @@ import {
 // import './App.css';
 
 import HomePage from './pages/HomePage.js';
+import HomePage2 from './pages/HomePage2.js';
 import LoginPage from './pages/LoginPage.js';
 import RegistrationPage from './pages/RegistrationPage.js';
 import WorkbenchPage from './pages/WorkbenchPage.js';
 import DevelopersDepot from './pages/ProjectsDepot.js';
 import TechDepot from './pages/TechDepot.js';
 import DiscussionsDepot from './pages/DiscussionsDepot.js';
+import Navigation from './components/Navigation/Navigation.js';
+import WelcomePage from './pages/WelcomePage.js';
+
+import ProjectDetails from './pages/ProjectDetails.js';
 // import SignInPage from './pages/SignInPage.js';
 // import DefaultPage from './pages/DefaultPage.js';
 // import ProjectSearchPage from './pages/ProjectSearch.js';
@@ -26,18 +31,27 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Route exact path="/" component={HomePage}/>
+        <Navigation/>
+        <Route exact path="/" component={HomePage2}/>
         <Route exact path="/login" component={LoginPage}/>
         <Route exact path="/signup" component={RegistrationPage}/>
         <Route exact path="/workbench" component={WorkbenchPage}/>
+        <Route exact path="/welcome" component={WelcomePage}/>
         {/* <Route exact path="/profile" component={ProfilePage}/> */}
         {/* <Route exact path="/signin" component={SignInPage}/> */}
         {/* <Route exact path="/projects" component={ProjectSearchPage}/> */}
         {/* <Route exact path="/projects2" component={ProjectSearch2}/> */}
+
+        
+        <Route exact path="/project/:projectID" component={ProjectDetails}/>
+
+
         <Route exact path="/projects/search" component={DevelopersDepot}/>
         <Route exact path="/tech/search" component={TechDepot}/>
         <Route exact path="/discussions/search" component={DiscussionsDepot}/>
         {/* <Route exact path="/dashboard" component={DashboardPage}/> */}
+
+
       </div>
     );
   }

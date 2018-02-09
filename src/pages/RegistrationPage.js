@@ -1,5 +1,15 @@
 import React from 'react';
-import axios from 'axios';
+
+import {
+  connect
+} from 'react-redux';
+import {
+  bindActionCreators
+} from 'redux';
+import {
+  register,
+  logout
+} from '../actions/authActions.js';
 
 import {
   PrimaryButton,
@@ -10,15 +20,16 @@ import {
   TextField
 } from 'office-ui-fabric-react/lib/TextField';
 
+// OLD - Removed after Redux implementation.
 import {
-  DEV_SERVER_URI,
+  // DEV_SERVER_URI,
   DEV_SITE_ROOT,
-  PROD_SERVER_URI,
-  PROD_SITE_ROOT
+  // PROD_SERVER_URI,
+  // PROD_SITE_ROOT
 } from '../variables/connections.js';
-
-let serverUri = PROD_SERVER_URI;
-let home = PROD_SITE_ROOT;
+//
+// let serverUri = DEV_SERVER_URI;
+let home = DEV_SITE_ROOT;
 // if (process.env.NODE_ENV === "production") {
 //   serverUri = PROD_SERVER_URI;
 //   home = PROD_SITE_ROOT;
@@ -27,8 +38,8 @@ let home = PROD_SITE_ROOT;
 //   home = DEV_SITE_ROOT;
 // }
 
-const createPath = 'users/create';
-const removeTokenPath = 'users/me/token';
+// const createPath = 'users/create';
+// const removeTokenPath = 'users/me/token';
 
 class RegistrationPage extends React.Component {
 
@@ -37,7 +48,7 @@ class RegistrationPage extends React.Component {
 
     this.state = {
       submitted: false,
-      token: ''
+      // token: ''
     }
   }
 
@@ -48,20 +59,28 @@ class RegistrationPage extends React.Component {
   }
 
   signOut() {
-    axios.delete(serverUri + removeTokenPath, {
-        params: {
-          token: this.state.token
-        }
-      })
-      .then((res) => {
-        this.setState({
-          submitted: false,
-          token: ''
-        });
-      })
-      .catch((err) => {
-        console.log("Error: signOut() - " + err.message);
+    if (this.props.token) {
+      this.props.logout(this.props.token);
+      this.setState({
+        subimtted: false
       });
+    }
+
+    // OLD - Removed after redux implementation.
+    // axios.delete(serverUri + removeTokenPath, {
+    //     params: {
+    //       token: this.state.token
+    //     }
+    //   })
+    //   .then((res) => {
+    //     this.setState({
+    //       submitted: false,
+    //       token: ''
+    //     });
+    //   })
+    //   .catch((err) => {
+    //     console.log("Error: signOut() - " + err.message);
+    //   });
   }
 
   handleSubmit(event) {
@@ -72,26 +91,35 @@ class RegistrationPage extends React.Component {
     const password2 = event.target.password2.value;
 
     if (password === password2) {
-      axios.post(serverUri + createPath, {
-          username,
-          email,
-          password
-        })
-        .then((res) => {
-          if (res) { // TODO: check if status is 200.
-            console.log(res.data);
-            this.setState({
-              token: res.data,
-              submitted: true
-            });
-          }
-        })
-        .catch((err) => {
-          console.log("Error: submitInfo() - " + err.message);
-          this.setState({
-            submitted: true
-          });
-        });
+      this.props.register({
+        username,
+        email,
+        password
+      });
+      this.setState({
+        submitted: true
+      });
+      // OLD - Removed after Redux implementation.
+      // axios.post(serverUri + createPath, {
+      //     username,
+      //     email,
+      //     password
+      //   })
+      //   .then((res) => {
+      //     if (res) { // TODO: check if status is 200.
+      //       console.log(res.data);
+      //       this.setState({
+      //         token: res.data,
+      //         submitted: true
+      //       });
+      //     }
+      //   })
+      //   .catch((err) => {
+      //     console.log("Error: submitInfo() - " + err.message);
+      //     this.setState({
+      //       submitted: true
+      //     });
+      //   });
     } else {
       console.log("Error: Password does not match");
     }
@@ -99,7 +127,7 @@ class RegistrationPage extends React.Component {
 
   conditionalRender() {
     if (this.state.submitted) {
-      if (!this.state.token) {
+      if (!this.props.token) { // changed for Redux implementation. was this.state.token.
         return (
           <div>
             <p>Invalid User info. Token Not Received.</p>
@@ -110,7 +138,7 @@ class RegistrationPage extends React.Component {
         return (
           <div style={{background: "lightgray", boxShadow: "2px 2px 2px #888888", padding: "10px"}}>
             <p style={{width: "600px", overflowWrap: "break-word", wordWrap: "break-word"}}> New account created. </p>
-            <p style={{width: "600px", overflowWrap: "break-word", wordWrap: "break-word"}}> Token received : {this.state.token} </p>
+            <p style={{width: "600px", overflowWrap: "break-word", wordWrap: "break-word"}}> Token received : {this.props.token} </p>
             <DefaultButton primary={true} onClick={this.signOut.bind(this)}>Sign Out</DefaultButton>
           </div>
         );
@@ -154,11 +182,24 @@ class RegistrationPage extends React.Component {
 
   render() {
     return (
-      <div style={{height: "100vh", width: "100%", display: "flex", flexFlow: "column", justifyContent: "center", alignItems: "center"}}>
+      <div style={{height: "100vh", width: "100%", background: "#212a49", display: "flex", flexFlow: "column", justifyContent: "center", alignItems: "center"}}>
         {this.conditionalRender()}
       </div>
     );
   }
 }
 
-export default RegistrationPage;
+const mapStateToProps = (state) => {
+  return {
+    token: state
+  };
+}
+
+const mapActionsToDispatch = (dispatch) => {
+  return bindActionCreators({
+    register,
+    logout
+  }, dispatch);
+}
+
+export default connect(mapStateToProps, mapActionsToDispatch)(RegistrationPage);

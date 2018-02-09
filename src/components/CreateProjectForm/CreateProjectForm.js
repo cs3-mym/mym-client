@@ -6,6 +6,10 @@ import axios from 'axios';
 // import CreateProjectInvites from './CreateProjectInvites.js';
 
 import {
+  NavLink
+} from 'react-router-dom';
+
+import {
   DEV_SERVER_URI
 } from '../../variables/connections.js';
 
@@ -79,6 +83,7 @@ class CreateProjectPage extends React.Component {
         <div style={{width: "100%", display: "flex", flexFlow: "column", alignItems: "center", }}>
           <h2 style={{color: "white"}}>Project Submission Complete</h2>
           <p style={{color: "white"}}>{this.state.project.title} was submitted</p>
+          <NavLink style={{color: "white"}} to={`project/${this.state.project._id}`}>Details</NavLink>
           <button onClick={this.handleRetry.bind(this)} style={{background: "#DFAE3B", color: "#18192F"}}>New Project</button>
         </div>
       );
@@ -86,7 +91,7 @@ class CreateProjectPage extends React.Component {
       return (
         <div style={{width: "100%", display: "flex", flexFlow: "column", alignItems: "center", }}>
           <h2 style={{color: "white"}}>Create A Project</h2>
-          <form style={{width: "100%", border: "1px dotted white", display: "flex", flexFlow: "column", alignItems: "center"}}>
+          <form style={{width: "100%", display: "flex", flexFlow: "column", alignItems: "center"}}>
             <p style={{color: "white"}}>Title </p>
             <input type="text" name="title" onChange={this.handleChange.bind(this)} value={this.state.title} style={{background: "#18192F" , border: "0px solid", outline: "none", color: "white"}}/>
             <p style={{color: "white"}}>Banner Message </p>
@@ -120,8 +125,10 @@ class CreateProjectPage extends React.Component {
 
   render() {
     // console.log(this.state);
+    // #313e6d
+    // #28294f
     return (
-      <div style={{width: "46%", background: "#28294f", padding: "20px"}}>
+      <div style={{width: "46%", background: "#313e6d", boxShadow: "0px 0px 5px 2px #18192F", border: "2px solid #48578e", padding: "20px"}}>
         {this.conditionalRender()}
       </div>
     );

@@ -39,9 +39,11 @@ class WorkbenchPage extends React.Component {
   }
 
   render() {
+    // #212a49
+    // #313e6d
     return (
-      <div style={{width: "100%", display: "flex", flexFlow: "column", alignItems:"center", justifyContent: "center", background: "lightgray"}}>
-        <h2>Workbench</h2>
+      <div style={{width: "100%", display: "flex", flexFlow: "column", alignItems:"center", background: "#212a49", minHeight: "100vh"}}>
+        <h2 style={{color: "white"}}>Workbench</h2>
         <select value={this.state.choice} onChange={this.changeType.bind(this)}>
           <option value="project" >Project</option>
           <option value="discussion" >Discussion</option>

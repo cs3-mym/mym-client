@@ -73,7 +73,7 @@ class CreateTechForm extends React.Component {
       return (
         <div style={{display: "flex", flexFlow: "column", alignItems: "center"}}>
           <h2 style={{color: "white"}}>Create Tech Form</h2>
-          <form style={{width: "100%", display: "flex", flexFlow: "column", alignItems: "center", border: "1px dotted white"}}>
+          <form style={{width: "100%", display: "flex", flexFlow: "column", alignItems: "center"}}>
             <p style={{color: "white"}}>Name </p>
             <input type="text" name="name" onChange={this.handleChange.bind(this)} value={this.state.name} style={{background: "#18192F" , border: "0px solid", outline: "none", color: "white"}}/>
             <p style={{color: "white"}}>Description </p>
@@ -94,8 +94,9 @@ class CreateTechForm extends React.Component {
   }
 
   render() {
+    // #28294f
     return (
-      <div style={{width: "46%", background: "#28294f", padding: "20px"}}>
+      <div style={{width: "46%", background: "#313e6d",boxShadow: "0px 0px 5px 2px #18192F", border: "2px solid #48578e", padding: "20px"}}>
         {this.conditionalRender()}
       </div>
     );

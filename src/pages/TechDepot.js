@@ -80,15 +80,16 @@ class TechDepot extends React.Component {
 
   conditionalRender() {
     if (this.state.error) {
+      // #28294f
       return (
-        <div style={{width: "46%", background: "#28294f", display: "flex", flexFlow: "column", alignItems:"center", justifyContent: "center", padding: "20px"}}>
+        <div style={{width: "46%", background: "#212a49", display: "flex", flexFlow: "column", alignItems:"center", justifyContent: "center", padding: "20px"}}>
           <h3 style={{color: "white"}}>Error Loading Technology List</h3>
           <button onClick={this.handleSubmit.bind(this)}>Retry</button>
         </div>
       );
     } else {
       return (
-        <div style={{width: "46%", background: "#28294f", display: "flex", flexFlow: "column", alignItems:"center", justifyContent: "center", padding: "20px"}}>
+        <div style={{width: "46%", background: "#212a49", display: "flex", flexFlow: "column", alignItems:"center", justifyContent: "center", padding: "20px"}}>
           <h2 style={{color: "white"}}>Tech Depot</h2>
           <input value={this.state.input} onChange={this.handleChange.bind(this)} style={{background: "#18192F", border: "0px solid", outline: "none", color: "white"}}/>
           <div style={{display: "flex", flexFlow: "row", width: "100%", justifyContent: "space-between"}}>
@@ -106,7 +107,7 @@ class TechDepot extends React.Component {
 
   render() {
     return (
-      <div style={{width: "100%", background: "lightgray", display: "flex", flexFlow: "column", alignItems: "center"}}>
+      <div style={{width: "100%", background: "#212a49", display: "flex", flexFlow: "column", alignItems: "center", minHeight: "100vh"}}>
         {this.conditionalRender()}
       </div>
     );

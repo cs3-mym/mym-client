@@ -75,7 +75,7 @@ class CreateDiscussionForm extends React.Component {
       return (
         <div style={{width: "100%", display: "flex", flexFlow: "column", alignItems: "center", }}>
           <h2 style={{color: "white"}}>Start A Discussion</h2>
-          <form style={{width: "100%", border: "1px dotted white", display: "flex", flexFlow: "column", alignItems: "center"}}>
+          <form style={{width: "100%", display: "flex", flexFlow: "column", alignItems: "center"}}>
             <p style={{color: "white"}}>Title </p>
             <input type="text" name="title" onChange={this.handleChange.bind(this)} value={this.state.title} style={{background: "#18192F" , border: "0px solid", outline: "none", color: "white"}}/>
             <p style={{color: "white"}}>Description </p>
@@ -104,8 +104,9 @@ class CreateDiscussionForm extends React.Component {
   }
 
   render() {
+    // #28294f
     return (
-      <div style={{width: "46%", display: "flex", flexFlow: "column", alignItems: "center", background: "#28294f", padding: "10px"}}>
+      <div style={{width: "46%", display: "flex", flexFlow: "column", alignItems: "center",boxShadow: "0px 0px 5px 2px #18192F", background: "#313e6d", border: "2px solid #48578e", padding: "10px"}}>
         {this.conditionalRender()}
       </div>
     );
