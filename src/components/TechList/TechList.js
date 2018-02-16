@@ -2,6 +2,8 @@ import React from 'react';
 
 import TechItem from './TechItem.js';
 
+const listStyle = {width:"100%", display: "flex", flexFlow: "column", alignItems: "center"};
+
 class TechList extends React.Component {
   mapTechToArr() {
     return this.props.tech.map((t, index) => {
@@ -11,7 +13,7 @@ class TechList extends React.Component {
 
   render() {
     return (
-      <div style={{width:"100%", display: "flex", flexFlow: "column", alignItems: "center"}}>
+      <div style={listStyle}>
         {this.mapTechToArr()}
       </div>
     );

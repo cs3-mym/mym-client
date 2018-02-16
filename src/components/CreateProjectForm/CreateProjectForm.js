@@ -15,6 +15,37 @@ import {
 
 const createProjectPath = 'projects/create';
 
+const pageStyle = {
+  width: "46%",
+  background: "#313e6d",
+  boxShadow: "0px 0px 5px 2px #18192F",
+  border: "2px solid #48578e",
+  padding: "20px"
+};
+
+const textStyle = {
+  color: "white"
+};
+
+const buttonStyle = {
+  background: "#DFAE3B",
+  color: "#18192F"
+};
+
+const inputStyle = {
+  background: "#18192F",
+  border: "0px solid",
+  outline: "none",
+  color: "white"
+};
+
+const containerStyle = {
+  width: "100%",
+  display: "flex",
+  flexFlow: "column",
+  alignItems: "center"
+};
+
 class CreateProjectPage extends React.Component {
 
   constructor(props) {
@@ -80,43 +111,43 @@ class CreateProjectPage extends React.Component {
   conditionalRender() {
     if (this.state.submitted) {
       return (
-        <div style={{width: "100%", display: "flex", flexFlow: "column", alignItems: "center", }}>
-          <h2 style={{color: "white"}}>Project Submission Complete</h2>
-          <p style={{color: "white"}}>{this.state.project.title} was submitted</p>
-          <NavLink style={{color: "white"}} to={`project/${this.state.project._id}`}>Details</NavLink>
-          <button onClick={this.handleRetry.bind(this)} style={{background: "#DFAE3B", color: "#18192F"}}>New Project</button>
+        <div style={containerStyle}>
+          <h2 style={textStyle}>Project Submission Complete</h2>
+          <p style={textStyle}>{this.state.project.title} was submitted</p>
+          <NavLink style={textStyle} to={`project/${this.state.project._id}`}>Details</NavLink>
+          <button onClick={this.handleRetry.bind(this)} style={buttonStyle}>New Project</button>
         </div>
       );
     } else {
       return (
-        <div style={{width: "100%", display: "flex", flexFlow: "column", alignItems: "center", }}>
-          <h2 style={{color: "white"}}>Create A Project</h2>
-          <form style={{width: "100%", display: "flex", flexFlow: "column", alignItems: "center"}}>
-            <p style={{color: "white"}}>Title </p>
-            <input type="text" name="title" onChange={this.handleChange.bind(this)} value={this.state.title} style={{background: "#18192F" , border: "0px solid", outline: "none", color: "white"}}/>
-            <p style={{color: "white"}}>Banner Message </p>
-            <input type="text" name="bannerMessage"  onChange={this.handleChange.bind(this)} value={this.state.bannerMessage} style={{background: "#18192F", border: "0px solid", outline: "none", color: "white"}}/>
-            <p style={{color: "white"}}>Description </p>
-            <input type="text" name="description"  onChange={this.handleChange.bind(this)} value={this.state.description} style={{background: "#18192F", border: "0px solid", outline: "none", color: "white"}}/>
-            <p style={{color: "white"}}>Github Link </p>
-            <input type="text" name="github"  onChange={this.handleChange.bind(this)} value={this.state.github} style={{background: "#18192F", border: "0px solid", outline: "none", color: "white"}}/>
-            <p style={{color: "white"}}>Status </p>
-            <input type="text" name="status"  onChange={this.handleChange.bind(this)} value={this.state.status} style={{background: "#18192F", border: "0px solid", outline: "none", color: "white"}}/>
-            <p style={{color: "white"}}>Visibility </p>
+        <div style={containerStyle}>
+          <h2 style={textStyle}>Create A Project</h2>
+          <form style={containerStyle}>
+            <p style={textStyle}>Title </p>
+            <input type="text" name="title" onChange={this.handleChange.bind(this)} value={this.state.title} style={inputStyle}/>
+            <p style={textStyle}>Banner Message </p>
+            <input type="text" name="bannerMessage"  onChange={this.handleChange.bind(this)} value={this.state.bannerMessage} style={inputStyle}/>
+            <p style={textStyle}>Description </p>
+            <input type="text" name="description"  onChange={this.handleChange.bind(this)} value={this.state.description} style={inputStyle}/>
+            <p style={textStyle}>Github Link </p>
+            <input type="text" name="github"  onChange={this.handleChange.bind(this)} value={this.state.github} style={inputStyle}/>
+            <p style={textStyle}>Status </p>
+            <input type="text" name="status"  onChange={this.handleChange.bind(this)} value={this.state.status} style={inputStyle}/>
+            <p style={textStyle}>Visibility </p>
             <select type="text" name="visibility" onChange={this.handleChange.bind(this)} value={this.state.visibility}>
               <option value="visible">Visible</option>
               <option value="hidden">Hidden</option>
             </select>
-            <p style={{color: "white"}}>Access </p>
+            <p style={textStyle}>Access </p>
             <select type="text" name="access" onChange={this.handleChange.bind(this)} value={this.state.access}>
               <option value="public">Public</option>
               <option value="invite">Invite Only</option>
             </select>
-            <p style={{color: "white"}}>Technologies </p>
-            <input type="text" name="technologies" onChange={this.handleChange.bind(this)} value={this.state.technologies} style={{background: "#18192F", border: "0px solid", outline: "none", color: "white"}}/>
-            <p style={{color: "white"}}>Tags </p>
-            <input type="text" name="tags" onChange={this.handleChange.bind(this)} value={this.state.tags} style={{background: "#18192F", border: "0px solid", outline: "none", color: "white"}}/>
-            <button style={{background: "#DFAE3B", color: "#18192F"}} onClick={this.handleSubmit.bind(this)}>Submit</button>
+            <p style={textStyle}>Technologies </p>
+            <input type="text" name="technologies" onChange={this.handleChange.bind(this)} value={this.state.technologies} style={inputStyle}/>
+            <p style={textStyle}>Tags </p>
+            <input type="text" name="tags" onChange={this.handleChange.bind(this)} value={this.state.tags} style={inputStyle}/>
+            <button style={buttonStyle} onClick={this.handleSubmit.bind(this)}>Submit</button>
           </form>
         </div>
       );
@@ -128,7 +159,7 @@ class CreateProjectPage extends React.Component {
     // #313e6d
     // #28294f
     return (
-      <div style={{width: "46%", background: "#313e6d", boxShadow: "0px 0px 5px 2px #18192F", border: "2px solid #48578e", padding: "20px"}}>
+      <div style={pageStyle}>
         {this.conditionalRender()}
       </div>
     );

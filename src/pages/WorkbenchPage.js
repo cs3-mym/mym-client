@@ -5,6 +5,18 @@ import CreateDiscussionForm from '../components/CreateDiscussionForm/CreateDiscu
 import CreateTechForm from '../components/CreateTechForm/CreateTechForm.js';
 import CreateProposalForm from '../components/CreateProposalForm/CreateProposalForm.js';
 
+const pageStyle = {
+  width: "100%",
+  display: "flex",
+  flexFlow: "column",
+  alignItems: "center",
+  background: "#212a49",
+  minHeight: "100vh"
+};
+const textStyle = {
+  color: "white"
+}
+
 class WorkbenchPage extends React.Component {
 
   constructor(props) {
@@ -42,8 +54,8 @@ class WorkbenchPage extends React.Component {
     // #212a49
     // #313e6d
     return (
-      <div style={{width: "100%", display: "flex", flexFlow: "column", alignItems:"center", background: "#212a49", minHeight: "100vh"}}>
-        <h2 style={{color: "white"}}>Workbench</h2>
+      <div style={pageStyle}>
+        <h2 style={textStyle}>Workbench</h2>
         <select value={this.state.choice} onChange={this.changeType.bind(this)}>
           <option value="project" >Project</option>
           <option value="discussion" >Discussion</option>

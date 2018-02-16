@@ -2,6 +2,12 @@ import React from 'react';
 
 import DiscussionItem from './DiscussionItem.js';
 
+const listStyle = {
+  width: "100%",
+  display: "flex",
+  flexFlow: "column"
+};
+
 class DiscussionsList extends React.Component {
   mapDiscussionsArr() {
     return this.props.discussions.map((discussion, index) => {
@@ -11,7 +17,7 @@ class DiscussionsList extends React.Component {
 
   render() {
     return (
-      <div style={{width: "100%", display: "flex", flexFlow: "column"}}>
+      <div style={listStyle}>
         {this.mapDiscussionsArr()}
       </div>
     );

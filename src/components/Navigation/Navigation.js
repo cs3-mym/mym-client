@@ -44,7 +44,7 @@ class Navigation extends React.Component {
             <NavLink style={{marginRight: "10px", color: "white"}} to="/welcome">Home</NavLink>
             <NavLink style={{marginRight: "10px", color: "white"}} to="/workbench">Workbench</NavLink>
             <NavLink style={{marginRight: "10px", color: "white"}} to="/projects/search">Projects</NavLink>
-            <NavLink style={{marginRight: "10px", color: "white"}} to="/tech/search">Tech</NavLink>
+            <NavLink style={{marginRight: "10px", color: "white"}} to="/technology/search">Tech</NavLink>
             <NavLink style={{marginRight: "20px", color: "white"}} to="/discussions/search">Discussions</NavLink>
           </div>
         </div>

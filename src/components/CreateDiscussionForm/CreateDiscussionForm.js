@@ -7,6 +7,41 @@ import {
 
 const createDiscussionPath = 'discussions/create';
 
+//TODO: Update page style. some props not needed.
+const pageStyle = {
+  width: "46%",
+  display: "flex",
+  flexFlow: "column",
+  alignItems: "center",
+  boxShadow: "0px 0px 5px 2px #18192F",
+  background: "#313e6d",
+  border: "2px solid #48578e",
+  padding: "10px"
+};
+
+const textStyle = {
+  color: "white"
+};
+
+const buttonStyle = {
+  background: "#DFAE3B",
+  color: "#18192F"
+};
+
+const inputStyle = {
+  background: "#18192F",
+  border: "0px solid",
+  outline: "none",
+  color: "white"
+};
+
+const containerStyle = {
+  width: "100%",
+  display: "flex",
+  flexFlow: "column",
+  alignItems: "center"
+};
+
 class CreateDiscussionForm extends React.Component {
 
   constructor(props) {
@@ -65,38 +100,38 @@ class CreateDiscussionForm extends React.Component {
   conditionalRender() {
     if (this.state.submitted) {
       return (
-        <div style={{width: "100%", display: "flex", flexFlow: "column", alignItems: "center", }}>
-          <h2 style={{color: "white"}}>Discussion Submission Complete</h2>
-          <p style={{color: "white"}}>{this.state.discussion.title} was submitted</p>
-          <button onClick={this.handleRetry.bind(this)} style={{background: "#DFAE3B", color: "#18192F"}}>New Discussion</button>
+        <div style={containerStyle}>
+          <h2 style={textStyle}>Discussion Submission Complete</h2>
+          <p style={textStyle}>{this.state.discussion.title} was submitted</p>
+          <button onClick={this.handleRetry.bind(this)} style={buttonStyle}>New Discussion</button>
         </div>
       );
     } else {
       return (
-        <div style={{width: "100%", display: "flex", flexFlow: "column", alignItems: "center", }}>
-          <h2 style={{color: "white"}}>Start A Discussion</h2>
-          <form style={{width: "100%", display: "flex", flexFlow: "column", alignItems: "center"}}>
-            <p style={{color: "white"}}>Title </p>
-            <input type="text" name="title" onChange={this.handleChange.bind(this)} value={this.state.title} style={{background: "#18192F" , border: "0px solid", outline: "none", color: "white"}}/>
-            <p style={{color: "white"}}>Description </p>
-            <input type="text" name="description"  onChange={this.handleChange.bind(this)} value={this.state.description} style={{background: "#18192F", border: "0px solid", outline: "none", color: "white"}}/>
-            <p style={{color: "white"}}>Objectives </p>
-            <input type="text" name="objectives"  onChange={this.handleChange.bind(this)} value={this.state.objectives} style={{background: "#18192F", border: "0px solid", outline: "none", color: "white"}}/>
-            <p style={{color: "white"}}>Visibility </p>
+        <div style={containerStyle}>
+          <h2 style={textStyle}>Start A Discussion</h2>
+          <form style={containerStyle}>
+            <p style={textStyle}>Title </p>
+            <input type="text" name="title" onChange={this.handleChange.bind(this)} value={this.state.title} style={inputStyle}/>
+            <p style={textStyle}>Description </p>
+            <input type="text" name="description"  onChange={this.handleChange.bind(this)} value={this.state.description} style={inputStyle}/>
+            <p style={textStyle}>Objectives </p>
+            <input type="text" name="objectives"  onChange={this.handleChange.bind(this)} value={this.state.objectives} style={inputStyle}/>
+            <p style={textStyle}>Visibility </p>
             <select type="text" name="visibility" onChange={this.handleChange.bind(this)} value={this.state.visibility}>
               <option value="visible">Visible</option>
               <option value="hidden">Hidden</option>
             </select>
-            <p style={{color: "white"}}>Access </p>
+            <p style={textStyle}>Access </p>
             <select type="text" name="access" onChange={this.handleChange.bind(this)} value={this.state.access}>
               <option value="public">Public</option>
               <option value="invite">Invite Only</option>
             </select>
-            <p style={{color: "white"}}>Category </p>
-            <input type="text" name="category" onChange={this.handleChange.bind(this)} value={this.state.category} style={{background: "#18192F", border: "0px solid", outline: "none", color: "white"}}/>
-            <p style={{color: "white"}}>Tags </p>
-            <input type="text" name="tags" onChange={this.handleChange.bind(this)} value={this.state.tags} style={{background: "#18192F", border: "0px solid", outline: "none", color: "white"}}/>
-            <button style={{background: "#DFAE3B", color: "#18192F"}} onClick={this.handleSubmit.bind(this)}>Submit</button>
+            <p style={textStyle}>Category </p>
+            <input type="text" name="category" onChange={this.handleChange.bind(this)} value={this.state.category} style={inputStyle}/>
+            <p style={textStyle}>Tags </p>
+            <input type="text" name="tags" onChange={this.handleChange.bind(this)} value={this.state.tags} style={inputStyle}/>
+            <button style={buttonStyle} onClick={this.handleSubmit.bind(this)}>Submit</button>
           </form>
         </div>
       );

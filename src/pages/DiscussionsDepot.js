@@ -9,6 +9,89 @@ import {
 
 const findDiscussionsPath = 'discussions/find';
 
+const pageStyle = {
+  width: "100%",
+  background: "#212a49",
+  display: "flex",
+  flexFlow: "column",
+  alignItems: "center",
+  minHeight: "100vh"
+};
+
+const inputStyle = {
+  background: "#18192F",
+  border: "0px solid",
+  outline: "none",
+  color: "white"
+};
+
+const containerStyle = {
+  width: "100%",
+  display: "flex",
+  flexFlow: "column",
+  alignItems: "center",
+  padding: "20px"
+};
+
+const textStyle = {
+  color: "white"
+};
+
+const labelStyle = {
+  background: "#DFAE3B",
+  color: "#18192F",
+  padding: "5px"
+};
+
+const filterLabelStyle = {
+  height: "30px",
+  width: "120px",
+  background: "#DFAE3B",
+  color: "#18192F",
+  padding: "5px"
+};
+
+const filterContainerStyle = {
+  width: "200px",
+  display: "flex",
+  flexFlow: "column",
+  alignItems: "center"
+};
+
+const containerStyle2 = {
+  width: "100%",
+  display: "flex",
+  flexFlow: "row",
+  padding: "30px"
+};
+
+const cardStyle = {
+  width: "80%",
+  background: "#212a49",
+  display: "flex",
+  flexFlow: "column",
+  alignItems: "center",
+  justifyContent: "center",
+  padding: "20px"
+};
+
+const recentSearchContainerStyle = {
+  display: "flex",
+  flexFlow: "row",
+  width: "100%",
+  justifyContent: "center"
+};
+
+const errorContainerStyle = {
+  width: "100%",
+  display: "flex",
+  flexFlow: "column",
+  alignItems: "center",
+  justifyContent: "center",
+  padding: "20px",
+  border: "1px dotted white"
+};
+
 class DiscussionDepot extends React.Component {
   constructor(props) {
     super(props);
@@ -77,14 +160,14 @@ class DiscussionDepot extends React.Component {
   conditionalRender() {
     if (this.state.error) {
       return (
-        <div style={{width: "100%", display: "flex", flexFlow: "column", alignItems:"center", justifyContent: "center", padding: "20px", border: "1px dotted white"}}>
-          <h3 style={{color: "white"}}>Error Loading Discussion List</h3>
+        <div style={errorContainerStyle}>
+          <h3 style={textStyle}>Error Loading Discussion List</h3>
           <button onClick={this.handleSubmit.bind(this)}>Retry</button>
         </div>
       );
     } else {
       return (
-        <div style={{width: "100%", display: "flex", flexFlow: "column", alignItems:"center", padding: "20px"}}>
+        <div style={containerStyle}>
           <DiscussionsList discussions={this.state.discussions}/>
         </div>
       );
@@ -95,20 +178,20 @@ class DiscussionDepot extends React.Component {
     // #212a49
     // #28294f
     return (
-      <div style={{width: "100%", background: "#212a49", display: "flex", flexFlow: "column", alignItems: "center", minHeight: "100vh"}}>
-        <div style={{width: "80%", background: "#212a49", display: "flex", flexFlow: "column", alignItems:"center", justifyContent: "center", padding: "20px"}}>
-          <h2 style={{color: "white"}}>Discussions Depot</h2>
-          <input value={this.state.input} onChange={this.handleChange.bind(this)} style={{background: "#18192F", border: "0px solid", outline: "none", color: "white"}}/>
-          <div style={{display: "flex", flexFlow: "row", width: "100%", justifyContent: "center"}}>
-            <p style={{background: "#DFAE3B", color: "#18192F", padding: "5px"}}>Type:Feedback</p>
-            <p style={{background: "#DFAE3B", color: "#18192F", padding: "5px"}}>Type:Project Idea</p>
-            <p style={{background: "#DFAE3B", color: "#18192F", padding: "5px"}}>Tag:Innovation</p>
+      <div style={pageStyle}>
+        <div style={cardStyle}>
+          <h2 style={textStyle}>Discussions Depot</h2>
+          <input value={this.state.input} onChange={this.handleChange.bind(this)} style={inputStyle}/>
+          <div style={recentSearchContainerStyle}>
+            <p style={labelStyle}>Type:Feedback</p>
+            <p style={labelStyle}>Type:Project Idea</p>
+            <p style={labelStyle}>Tag:Innovation</p>
           </div>
-          <div style={{width: "100%", display: "flex", flexFlow: "row", padding: "30px"}}>
-            <div style={{width: "200px", display: "flex", flexFlow: "column", alignItems: "center"}}>
-              <p style={{height:"30px", width: "120px", background: "#DFAE3B", color: "#18192F", padding: "5px"}}>Feedback</p>
-              <p style={{height:"30px", width: "120px", background: "#DFAE3B", color: "#18192F", padding: "5px"}}>Tech</p>
-              <p style={{height:"30px", width: "120px", background: "#DFAE3B", color: "#18192F", padding: "5px"}}>Ideas</p>
+          <div style={containerStyle2}>
+            <div style={filterContainerStyle}>
+              <p style={filterLabelStyle}>Feedback</p>
+              <p style={filterLabelStyle}>Tech</p>
+              <p style={filterLabelStyle}>Ideas</p>
             </div>
             {this.conditionalRender()}
           </div>

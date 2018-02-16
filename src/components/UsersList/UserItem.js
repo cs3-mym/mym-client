@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {
-  NavLink
+  Link
 } from 'react-router-dom';
 
 const itemStyle = {
@@ -17,18 +17,15 @@ const textStyle = {
   color: "white"
 };
 
-class ProjectItem extends React.Component {
+class UserItem extends React.Component {
   render() {
-    // #18192F
-    // #212a49
     return (
       <div style={itemStyle}>
-        <h4 style={textStyle}>{this.props.project.title}</h4>
-        <p style={textStyle}>{this.props.project.status}</p>
-        <NavLink style={textStyle} to={`/project/${this.props.project._id}`}>more</NavLink>
+        <h4 style={textStyle}>{this.props.user.username}</h4>
+        <Link style={textStyle} to={`/user/${this.props.user.username}`}>more</Link>
       </div>
     );
   }
 }
 
-export default ProjectItem;
+export default UserItem;

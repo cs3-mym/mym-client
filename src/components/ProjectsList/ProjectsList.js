@@ -2,6 +2,8 @@ import React from 'react';
 
 import ProjectItem from './ProjectItem.js';
 
+const listStyle = {width:"100%", display: "flex", flexFlow: "column", alignItems: "center"};
+
 class ProjectList extends React.Component {
   mapProjectsToArr() {
     return this.props.projects.map((proj, index) => {
@@ -11,7 +13,7 @@ class ProjectList extends React.Component {
 
   render() {
     return (
-      <div style={{width:"100%", display: "flex", flexFlow: "column", alignItems: "center"}}>
+      <div style={listStyle}>
         {this.mapProjectsToArr()}
       </div>
     );
