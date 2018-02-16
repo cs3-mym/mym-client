@@ -27,7 +27,6 @@ const modalStyle = {
 
 const messageBoxStyle = {
   width: "300px",
-  padding: "10px",
   background: "darkgray",
   display: "flex",
   flexFlow: "column",

@@ -90,12 +90,24 @@ class UserDepot extends React.Component {
       })
   }
 
+  filterUsers() {
+    if (this.state.input) {
+      return this.state.users.filter((user) => {
+        if (user.username.toLowerCase().includes(this.state.input)) {
+          return true;
+        }
+        return false;
+      });
+    } else {
+      return this.state.users;
+    }
+  }
 
   handleChange(event) {
-    event.preventDefault();
-    console.log("UsersDepot handleChange()");
+    // event.preventDefault();
+    // console.log("UsersDepot handleChange()");
     this.setState({
-      input: event.target.vlaue
+      input: event.target.value
     });
   }
 
@@ -116,7 +128,7 @@ class UserDepot extends React.Component {
       return (
         <div style={usersContainer}>
           <h2 style={textStyle}>User Search</h2>
-          <input value={this.state.input} onChange={this.handleChange.bind(this)} style={{background: "#18192F", border: "0px solid", outline: "none", color: "white"}}/>
+          <input type="text" value={this.state.input} onChange={this.handleChange.bind(this)} style={{background: "#18192F", border: "0px solid", outline: "none", color: "white"}}/>
           <div style={recentSearchContainer}>
             <p style={searchLabelStyle}>email:jon@me.com</p>
             {/* <p style={searchLabelStyle}>email:steve@me.com</p> */}
@@ -124,7 +136,7 @@ class UserDepot extends React.Component {
             <p style={searchLabelStyle}>skill:frontend</p>
             <p style={searchLabelStyle}>interest:backend</p>
           </div>
-          <UsersList users={this.state.users}/>
+          <UsersList users={this.filterUsers()}/>
         </div>
       );
     }

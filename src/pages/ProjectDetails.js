@@ -11,10 +11,12 @@ import {
 
 import {
   DEV_SERVER_URI,
-  DEV_ROOT_URI
+  // DEV_ROOT_URI
 } from '../variables/connections.js';
 
 import CreateRequestModal from '../components/CreateRequestModal/CreateRequestModal.js';
+import RequestsList from '../components/ProjectRequestsList/ProjectRequestsList.js';
+import InviteModal from '../components/ProjectInviteModal/ProjectInviteModal.js';
 
 const textStyle = {
   color: 'white'
@@ -22,6 +24,7 @@ const textStyle = {
 
 const getProjectPath = 'projects/';
 const joinProjectPath = 'projects/join';
+const getRequestsPath = 'requests/read';
 
 const errorTextStyle = {
   color: "white",
@@ -193,7 +196,8 @@ const otherContainer = {
   marginBottom: "10px",
   color: "white",
   background: "#313e6d",
-  boxShadow: "3px 3px #48578e"
+  boxShadow: "3px 3px #48578e",
+  overflow: "auto"
 };
 const historyContainer = {
   width: "100%",
@@ -208,101 +212,137 @@ const historyContainer = {
 };
 class ProjectDetailsPage extends React.Component {
 
-    constructor(props) {
-      super(props);
+  constructor(props) {
+    super(props);
 
-      this.state = {
-        projectID: '',
-        project: defaultProject,
-        error: false,
-        requestModal: false
+    this.state = {
+      projectID: '',
+      project: defaultProject,
+      error: false,
+      requestModal: false,
+      requests: [],
+      inviteModal: false
+    }
+  }
+
+  componentDidMount() {
+    // this.setState({
+    //   projectId: this.props.match.params.projectID;
+    // });
+    this._getProject();
+    this._getRequests();
+  }
+
+  _openModal() {
+    this.setState({
+      requestModal: true
+    });
+  }
+
+  _closeModal() {
+    this.setState({
+      requestModal: false
+    });
+  }
+
+  _openInviteModal() {
+    this.setState({
+      inviteModal: true
+    });
+  }
+
+  _closeInviteModal() {
+    this.setState({
+      inviteModal: false
+    });
+  }
+
+  _joinProject() {
+    console.log("ProjetDetails _joinProject()");
+    axios.post(DEV_SERVER_URI + joinProjectPath, {
+        token: this.props.token,
+        projectID: this.state.projectID
+      })
+      .then((res) => {
+        console.log("Join successful");
+        // this.setState({
+        //   project: res.data
+        // });
+      })
+      .catch((err) => {
+        console.log("Join unsuccessful");
+        console.log(err.message);
+      });
+  }
+
+  _getProject() {
+    console.log("ProjectDetails _getProject()");
+    // console.log(this.props.match);
+    const pID = this.props.match.params.projectID;
+    axios.get(DEV_SERVER_URI + getProjectPath + pID)
+      .then((res) => {
+        // console.log(res.data);
+        this.setState({
+          project: res.data,
+          projectID: pID
+        });
+      })
+      .catch((err) => {
+        console.log(err.message);
+        this.setState({
+          error: true
+        });
+      });
+  }
+
+  mapParticipants() {
+    // console.log(this.state.project.participants);
+    return this.state.project.participants.map((part, index) => {
+      return (
+        <Link style={textStyle} key={index} to={{ pathname: `/user/${part.username}` }}>{part.username}</Link>
+      );
+    });
+  }
+
+  handleRefresh() {
+    this._getProject();
+  }
+
+  _getRequests() {
+    const options = {
+      options: {
+        query: {
+          project: this.state.project._id
+        },
+        select: 'title category'
       }
-    }
+    };
 
-    componentDidMount() {
-      // this.setState({
-      //   projectId: this.props.match.params.projectID;
-      // });
-      this._getProject();
-    }
-
-    _openModal() {
-      this.setState({
-        requestModal: true
-      });
-    }
-
-    _closeModal() {
-      this.setState({
-        requestModal: false
-      });
-    }
-
-    _joinProject() {
-      console.log("ProjetDetails _joinProject()");
-      axios.post(DEV_SERVER_URI + joinProjectPath, {
-          token: this.props.token,
-          projectID: this.state.projectID
-        })
-        .then((res) => {
-          console.log("Join successful");
-          // this.setState({
-          //   project: res.data
-          // });
-        })
-        .catch((err) => {
-          console.log("Join unsuccessful");
-          console.log(err.message);
+    axios.post(DEV_SERVER_URI + getRequestsPath, options)
+      .then((res) => {
+        this.setState({
+          requests: res.data
         });
-    }
-
-    _getProject() {
-      console.log("ProjectDetails _getProject()");
-      // console.log(this.props.match);
-      const pID = this.props.match.params.projectID;
-      axios.get(DEV_SERVER_URI + getProjectPath + pID)
-        .then((res) => {
-          // console.log(res.data);
-          this.setState({
-            project: res.data,
-            projectID: pID
-          });
-        })
-        .catch((err) => {
-          console.log(err.message);
-          this.setState({
-            error: true
-          });
-        });
-    }
-
-    mapParticipants() {
-      // console.log(this.state.project.participants);
-      return this.state.project.participants.map((part, index) => {
-        return (
-          <Link style={textStyle} key={index} to={{ pathname: `/user/${part.username}` }}>{part.username}</Link>
-        );
+      })
+      .catch((err) => {
+        console.log(err.message);
       });
-    }
+  }
 
-    handleRefresh() {
-      this._getProject();
-    }
-
-    conditionalRender() {
-        if (this.state.error) {
-          return (
-            <h1 style={errorTextStyle}>Unable To Load Project from Server</h1>
-          );
-        } else {
-          // #313e6d
-          // #212a49
-          // #33353a
-          // #48578e
-          // #2d3a66
-          // #313e6d #313e6d
-          return (
-              <div style={pageStyle}>
+  conditionalRender() {
+    if (this.state.error) {
+      return (
+        <h1 style={errorTextStyle}>Unable To Load Project from Server</h1>
+      );
+    } else {
+      // #313e6d
+      // #212a49
+      // #33353a
+      // #48578e
+      // #2d3a66
+      // #313e6d #313e6d
+      return (
+        <div style={pageStyle}>
           <div style={leftContainer}>
             <div style={titleContainer}>Title: {this.state.project.title} - {this.state.project.status} - {this.state.project.visibility} - {this.state.project.access} - {this.state.project.category}</div>
             <div style={githubContainer}>Github Link: {this.state.project.github}</div>
@@ -322,6 +362,8 @@ class ProjectDetailsPage extends React.Component {
               <button onClick={this._joinProject.bind(this)} style={buttonStyle1}>Join</button>
               <button onClick={this._getProject.bind(this)} style={buttonStyle2}>Refresh</button>
               <button onClick={this._openModal.bind(this)} style={buttonStyle1}>New Request</button>
+              <button onClick={this._openInviteModal.bind(this)} style={buttonStyle2}>Invite</button>
+              <button style={buttonStyle1}>Follow</button>
             </div>
             <div style={rightBottomContainer}>
               <div style={rightContainer1}>
@@ -346,7 +388,10 @@ class ProjectDetailsPage extends React.Component {
                 </div>
               </div>
               <div style={rightContainer2}>
-                <div style={otherContainer}>Other/Polls</div>
+                <div style={otherContainer}>
+                  <p style={textStyle}>Requests <button onClick={this._getRequests.bind(this)}>refresh</button></p>
+                  <RequestsList requests={this.state.requests}/>
+                </div>
                 <div style={historyContainer}>
                   <h3>History</h3>
                   <div style={defaultItemStyle}>Event: User 1 added feature</div>
@@ -358,8 +403,8 @@ class ProjectDetailsPage extends React.Component {
                 </div>
               </div>
             </div>
-          </div> <
-        /div>
+          </div>
+        </div>
       );
     }
   }
@@ -373,9 +418,19 @@ class ProjectDetailsPage extends React.Component {
     }
   }
 
+  conditionalInviteModal() {
+    const actions = {
+      _closeInviteModal: this._closeInviteModal.bind(this)
+    };
+    if (this.state.inviteModal) {
+      return <InviteModal project={this.state.project} token={this.props.token} actions={actions}/>
+    }
+  }
+
   render() {
     return (
       <div style={pageContainer}>
+        {this.conditionalInviteModal()}
         {this.conditionalModal()}
         {this.conditionalRender()}
       </div>

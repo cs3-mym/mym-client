@@ -32,7 +32,6 @@ const modalStyle = {
 
 const requestBoxStyle = {
   width: "300px",
-  padding: "10px",
   background: "darkgray",
   display: "flex",
   flexFlow: "column",
@@ -46,12 +45,12 @@ const formStyle = {
   alignItems: "center"
 };
 
-const inputStyle = {
-  background: "#18192F",
-  border: "0px solid",
-  outline: "none",
-  color: "white"
-};
+// const inputStyle = {
+//   background: "#18192F",
+//   border: "0px solid",
+//   outline: "none",
+//   color: "white"
+// };
 
 class CreateRequestModal extends React.Component {
 

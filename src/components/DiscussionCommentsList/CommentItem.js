@@ -2,8 +2,10 @@ import React from 'react';
 
 const commentStyle = {
   width: "100%",
-  display: "flex",
-  alignItems: "center"
+  // display: "flex",
+  // alignItems: "center",
+  background: "#18192F",
+  marginBottom: "5px"
 }
 
 const textStyle = {
@@ -14,8 +16,7 @@ class CommentItem extends React.Component {
   render() {
     return (
       <div style={commentStyle}>
-        <p style={textStyle}>Votes</p>
-        <p style={textStyle}>Username: this.props.comment.from</p>
+        <p style={textStyle}>{this.props.comment.from.username}</p>
         <p style={textStyle}>{this.props.comment.description}</p>
       </div>
     );

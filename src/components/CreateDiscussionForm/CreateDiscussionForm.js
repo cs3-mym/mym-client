@@ -8,16 +8,16 @@ import {
 const createDiscussionPath = 'discussions/create';
 
 //TODO: Update page style. some props not needed.
-const pageStyle = {
-  width: "46%",
-  display: "flex",
-  flexFlow: "column",
-  alignItems: "center",
-  boxShadow: "0px 0px 5px 2px #18192F",
-  background: "#313e6d",
-  border: "2px solid #48578e",
-  padding: "10px"
-};
+// const pageStyle = {
+//   width: "46%",
+//   display: "flex",
+//   flexFlow: "column",
+//   alignItems: "center",
+//   boxShadow: "0px 0px 5px 2px #18192F",
+//   background: "#313e6d",
+//   border: "2px solid #48578e",
+//   padding: "10px"
+// };
 
 const textStyle = {
   color: "white"

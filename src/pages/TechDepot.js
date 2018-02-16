@@ -99,11 +99,24 @@ class TechDepot extends React.Component {
   }
 
   handleChange(event) {
-    event.preventDefault();
-    console.log("DevelopersDepot handleChange()");
+    // event.preventDefault();
+    // console.log("DevelopersDepot handleChange()");
     this.setState({
       input: event.target.value
     });
+  }
+
+  filterTech() {
+    if (this.state.input) {
+      return this.state.tech.filter((tech) => {
+        if (tech.name.toLowerCase().includes(this.state.input)) {
+          return true;
+        }
+        return false;
+      });
+    } else {
+      return this.state.tech;
+    }
   }
 
   handleSubmit() {
@@ -136,7 +149,7 @@ class TechDepot extends React.Component {
       return (
         <div style={techContainer}>
           <h2 style={textStyle}>Tech Depot</h2>
-          <input value={this.state.input} onChange={this.handleChange.bind(this)} style={inputContainer}/>
+          <input type="text" value={this.state.input} onChange={this.handleChange.bind(this)} style={inputContainer}/>
           <div style={recentSearchContainer}>
             <p style={searchLabelStyle}>Type:Frontend</p>
             <p style={searchLabelStyle}>Type:Backend</p>
@@ -144,7 +157,7 @@ class TechDepot extends React.Component {
             <p style={searchLabelStyle}>Tag:UI</p>
             <p style={searchLabelStyle}>Tag:Search</p>
           </div>
-          <TechList tech={this.state.tech}/>
+          <TechList tech={this.filterTech()}/>
         </div>
       );
     }

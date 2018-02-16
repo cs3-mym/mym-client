@@ -17,19 +17,19 @@ const buttonStyle = {
   color: "#18192F"
 };
 
-const inputStyle = {
-  background: "#18192F",
-  border: "0px solid",
-  outline: "none",
-  color: "white"
-};
+// const inputStyle = {
+//   background: "#18192F",
+//   border: "0px solid",
+//   outline: "none",
+//   color: "white"
+// };
 
-const containerStyle = {
-  width: "100%",
-  display: "flex",
-  flexFlow: "column",
-  alignItems: "center"
-};
+// const containerStyle = {
+//   width: "100%",
+//   display: "flex",
+//   flexFlow: "column",
+//   alignItems: "center"
+// };
 
 class CreateProposalForm extends React.Component {
   handleSubmit(event) {

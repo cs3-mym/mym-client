@@ -13,12 +13,15 @@ import {
   DEV_SERVER_URI
 } from '../variables/connections.js';
 
-const getMePath = 'users/me';
+import InvitesList from '../components/InvitesList/InvitesList.js';
+
+const getMyInvitesPath = 'invitations/me';
 
 const cardStyle = {
   width: "46%",
   display: "flex",
   flexFlow: "column",
+  alignItems: 'center',
   background: "#313e6d",
   color: "white",
   marginBottom: "10px",
@@ -41,40 +44,30 @@ const pageStyle = {
   background: "#212a49"
 }
 
-const defaultUser = {
-  username: 'unknown',
-  email: 'n/a',
-  projects: [],
-  skills: [],
-  interests: []
-}
-
-class UserProfilePage extends React.Component {
-
+class InvitesPage extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      user: defaultUser,
-      error: false,
-      userID: ''
+      invites: [],
+      error: false
     }
   }
 
   componentDidMount() {
-    const obj = {
-      token: this.props.token
-    }
-    this._getMe(DEV_SERVER_URI + getMePath, obj);
+    this._getMyInvites();
   }
 
-  _getMe(path, o) {
-    axios.post(path, o)
+  _getMyInvites() {
+    const post = {
+      token: this.props.token
+    }
+
+    axios.post(DEV_SERVER_URI + getMyInvitesPath, post)
       .then((res) => {
-        console.log(res.data);
         this.setState({
-          user: res.data,
-          userID: res.data._id
+          invites: res.data,
+          error: false
         });
       })
       .catch((err) => {
@@ -85,31 +78,23 @@ class UserProfilePage extends React.Component {
       });
   }
 
-  _mapProjects() {
-    return this.state.user.projects.map((proj, index) => {
-      return <p key={index} style={textStyle}>{proj.title} <Link style={textStyle} to={`project/${proj._id}`}>more</Link></p>
-    });
+  _handleRetryButton() {
+    this._getMyInvites();
   }
 
   conditionalRender() {
     if (this.state.error) {
       return (
         <div style={cardStyle}>
-          <h3 style={textStyle}>Unable to load item</h3>
+          <h3 style={textStyle}>Error Loading Invites</h3>
+          <button onClick={this._handleRetryButton.bind(this)}>Retry</button>
         </div>
       );
     } else {
       return (
-        <div style={pageStyle}>
-          <h2 style={textStyle}>User Profile Page</h2>
-          <p style={textStyle}>{this.state.user.email}</p>
-          <p style={textStyle}>{this.state.user.username}</p>
-          <Link style={textStyle} to="/messages">Messages</Link>
-          <Link style={textStyle} to="/welcome">Projects</Link>
-          <Link style={textStyle} to="/invites">Invites</Link>
-          <Link style={textStyle} to="/welcome">Contributions</Link>
-          <h3 style={textStyle}>Projects</h3>
-          {this._mapProjects()}
+        <div style={{width: "46%", padding: "20px"}}>
+          <h2 style={textStyle}>Invites <button onClick={this._handleRetryButton.bind(this)}>Refresh</button></h2>
+          <InvitesList invites={this.state.invites}/>
         </div>
       );
     }
@@ -130,4 +115,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, null)(UserProfilePage);
+export default connect(mapStateToProps, null)(InvitesPage);

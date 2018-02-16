@@ -101,9 +101,22 @@ class DevelopersDepot extends React.Component {
     });
   }
 
+  filterProjects() {
+    if (this.state.input) {
+      return this.state.projects.filter((project) => {
+        if (project.title.toLowerCase().includes(this.state.input)) {
+          return true;
+        }
+        return false;
+      });
+    } else {
+      return this.state.projects;
+    }
+  }
+
   handleChange(event) {
-    event.preventDefault();
-    console.log("DevelopersDepot handleChange()");
+    // event.preventDefault();
+    // console.log("DevelopersDepot handleChange()");
     this.setState({
       input: event.target.value
     });
@@ -150,7 +163,7 @@ class DevelopersDepot extends React.Component {
             <p style={searchLabelStyle}>Tech:Axios</p>
             <p style={searchLabelStyle}>Tech:Redux</p>
           </div>
-          <ProjectsList projects={this.state.projects}/>
+          <ProjectsList projects={this.filterProjects()}/>
         </div>
       );
     }

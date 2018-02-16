@@ -13,7 +13,7 @@ import {
   Link
 } from 'react-router-dom';
 
-const removeMessagePath = 'messages/remove';
+// const removeMessagePath = 'messages/remove';
 const archiveMessagePath = 'messages/archive';
 const unarchiveMessagePath = 'messages/unarchive';
 

@@ -19,6 +19,7 @@ import WelcomePage from './pages/WelcomePage.js';
 import HomePage2 from './pages/HomePage2.js';
 import LoginPage from './pages/LoginPage.js';
 import MessagesPage from './pages/MessagesPage.js';
+import InvitesPage from './pages/InvitesPage.js';
 import UserProfilePage from './pages/UserProfilePage.js';
 
 import RegistrationPage from './pages/RegistrationPage.js';
@@ -35,6 +36,7 @@ import DiscussionDetails from './pages/DiscussionDetails.js';
 import UserDetailsPage from './pages/UserDetailsPage.js';
 import MessageDetails from './pages/MessageDetailsPage.js';
 import RequestDetails from './pages/RequestDetailsPage.js';
+import InviteDetails from './pages/InviteDetailsPage.js';
 
 // import SignInPage from './pages/SignInPage.js';
 // import DefaultPage from './pages/DefaultPage.js';
@@ -57,6 +59,7 @@ class App extends Component {
         <Route exact path="/welcome" component={RequireAuth(WelcomePage)}/>
         <Route exact path="/profile" component={RequireAuth(UserProfilePage)}/>
         <Route exact path="/messages" component={RequireAuth(MessagesPage)}/>
+        <Route exact path="/invites" component={RequireAuth(InvitesPage)}/>
 
         <Route exact path="/user/:username" component={RequireAuth(UserDetailsPage)}/>
         <Route exact path="/project/:projectID" component={RequireAuth(ProjectDetails)}/>
@@ -64,6 +67,7 @@ class App extends Component {
         <Route exact path="/discussion/:discussionID" component={RequireAuth(DiscussionDetails)}/>
         <Route exact path="/message/:messageID" component={RequireAuth(MessageDetails)}/>
         <Route exact path="/request/:requestID" component={RequireAuth(RequestDetails)}/>
+        <Route exact path="/invite/:inviteID" componenet={RequireAuth(InviteDetails)}/>
 
         <Route exact path="/requests/search" component={RequireAuth(RequestsDepot)}/>
         <Route exact path="/users/search" component={RequireAuth(UserDepot)}/>

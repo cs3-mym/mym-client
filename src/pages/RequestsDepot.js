@@ -99,12 +99,27 @@ class RequestsDepotPage extends React.Component {
     this._getRequests();
   }
 
-  _handleInputChange() {
+  _handleInputChange(event) {
+    this.setState({
+      input: event.target.value
+    });
+  }
 
+  filterRequests() {
+    if (this.state.input) {
+      return this.state.requests.filter((request) => {
+        if (request.title.toLowerCase().includes(this.state.input) || request.technology.toLowerCase().includes(this.state.input) || request.tags.toLowerCase().includes(this.state.input) || request.category.toLowerCase().includes(this.state.input)) {
+          return true;
+        }
+        return false;
+      });
+    } else {
+      return this.state.requests;
+    }
   }
 
   conditionalRender() {
-    console.log(this.state.requests);
+    // console.log(this.state.requests);
     if (this.state.error) {
       return (
         <div style={cardStyle}>
@@ -116,14 +131,14 @@ class RequestsDepotPage extends React.Component {
       return (
         <div style={requestsContainer}>
           <h2 style={textStyle}>Requests <button onClick={this._handleRetryButton.bind(this)}>Refresh</button></h2>
-          <input value={this.state.input} onChange={this._handleInputChange.bind(this)} style={inputStyle}/>
+          <input type="text" value={this.state.input} onChange={this._handleInputChange.bind(this)} style={inputStyle}/>
           <div style={recentSearchContainer}>
             <p style={searchLabelStyle}>tech:Redux</p>
             {/* <p style={searchLabelStyle}>email:steve@me.com</p> */}
             <p style={searchLabelStyle}>category:frontend</p>
             <p style={searchLabelStyle}>category:backend</p>
           </div>
-          <RequestsList requests={this.state.requests}/>
+          <RequestsList requests={this.filterRequests()}/>
         </div>
       );
     }

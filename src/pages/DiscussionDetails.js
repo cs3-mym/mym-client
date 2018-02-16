@@ -9,14 +9,15 @@ import {
   Link
 } from 'react-router-dom';
 
-import UnableToLoad from '../components/UnableToLoad/UnableToLoad.js';
 import DiscussionCommentsList from '../components/DiscussionCommentsList/DiscussionCommentsList.js';
+import CreateComment from '../components/DiscussionCreateComment/CreateComment.js';
 
 import {
   DEV_SERVER_URI
 } from '../variables/connections.js';
 
 const getDiscussionPath = 'discussion/';
+const getCommentsForDiscussionPath = 'comments/find';
 // const addDiscussionPath = '';
 
 const defaultDiscussion = {
@@ -34,6 +35,7 @@ const cardStyle = {
   width: "46%",
   display: "flex",
   flexFlow: "column",
+  alignItems: "center",
   background: "#313e6d",
   color: "white",
   marginBottom: "10px",
@@ -63,11 +65,14 @@ class DiscussionDetailsPage extends React.Component {
     this.state = {
       discussionID: '',
       discussion: defaultDiscussion,
-      error: false
+      error: false,
+      comments: [],
+      errorComments: false
     }
   }
 
   componentDidMount() {
+    this._getComments();
     this._getDiscussion();
   }
 
@@ -90,11 +95,48 @@ class DiscussionDetailsPage extends React.Component {
       });
   }
 
-  conditionalRender() {
-    if (this.state.error) {
-      return <UnableToLoad/>;
-    } else {
-      return (
+  _getComments() {
+    const options = {
+      options: {
+        query: {
+          discussion: this.state.discussion._id
+        },
+        populate: [{
+          path: 'from',
+          select: 'username'
+        }]
+      }
+    };
+
+    axios.post(DEV_SERVER_URI + getCommentsForDiscussionPath, options)
+      .then((res) => {
+        this.setState({
+          comments: res.data,
+          errorComments: false,
+        });
+      })
+      .catch((err) => {
+        console.log(err.message);
+        this.setState({
+          errorComments: true
+        });
+      });
+  }
+
+  _handleRefreshButton() {
+    this._getComments();
+  }
+
+  conditionalStatus() {
+    if (this.state.errorComments) {
+      return <p style={textStyle}>unable to load items</p>;
+    }
+  }
+
+  render() {
+    return (
+      <div style={pageStyle}>
+        <Link style={textStyle} to="/discussions/search">back</Link>
         <div style={pageStyle}>
           <div style={cardStyle}>
             <h3 style={textStyle}>{this.state.discussion.title}</h3>
@@ -105,19 +147,12 @@ class DiscussionDetailsPage extends React.Component {
             <p style={textStyle}>Tags: {this.state.discussion.tags}</p>
           </div>
           <div style={cardStyle}>
-            <h3 style={textStyle}>Comments</h3>
-            <DiscussionCommentsList comments={this.state.discussion.comments}/>
+            <h3 style={textStyle}>Comments <button onClick={this._handleRefreshButton.bind(this)}>Refresh</button></h3>
+            {this.conditionalStatus()}
+            <CreateComment discussion={this.state.discussion}/>
+            <DiscussionCommentsList comments={this.state.comments}/>
           </div>
         </div>
-      );
-    }
-  }
-
-  render() {
-    return (
-      <div style={pageStyle}>
-        <Link style={textStyle} to="/discussions/search">back</Link>
-        {this.conditionalRender()}
       </div>
     );
   }

@@ -5,9 +5,9 @@ import {
   connect
 } from 'react-redux';
 
-import {
-  Link
-} from 'react-router-dom';
+// import {
+//   Link
+// } from 'react-router-dom';
 
 import {
   DEV_SERVER_URI

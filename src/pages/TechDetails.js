@@ -14,7 +14,7 @@ import {
 } from '../variables/connections.js';
 
 const getTechPath = 'tech/';
-const addTechPath = '';
+// const addTechPath = '';
 
 const defaultTech = {
   name: 'untitled',

@@ -51,27 +51,27 @@ const defaultUser = {
   interests: []
 }
 
-const modalStyle = {
-  width: "100%",
-  height: "100%",
-  background: "rgba(0,0,0,0.3)",
-  display: "flex",
-  flexFlow: "column",
-  alignItems: "center",
-  justifyContent: "center",
-  zIndex: "100",
-  position: "absolute",
-  left: "0",
-  top: '0'
-}
-
-const messageBoxStyle = {
-  width: "300px",
-  background: "darkgray",
-  display: "flex",
-  flexFlow: "column",
-  padding: "10px"
-}
+// const modalStyle = {
+//   width: "100%",
+//   height: "100%",
+//   background: "rgba(0,0,0,0.3)",
+//   display: "flex",
+//   flexFlow: "column",
+//   alignItems: "center",
+//   justifyContent: "center",
+//   zIndex: "100",
+//   position: "absolute",
+//   left: "0",
+//   top: '0'
+// }
+//
+// const messageBoxStyle = {
+//   width: "300px",
+//   background: "darkgray",
+//   display: "flex",
+//   flexFlow: "column",
+//   padding: "10px"
+// }
 
 class UserDetailsPage extends React.Component {
 
