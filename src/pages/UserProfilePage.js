@@ -1,9 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 
-import {
-  connect
-} from 'react-redux';
+// import {
+//   connect
+// } from 'react-redux';
 
 import {
   Link
@@ -124,10 +124,12 @@ class UserProfilePage extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    token: state
-  };
-};
+// const mapStateToProps = (state) => {
+//   return {
+//     token: state.token
+//   };
+// };
 
-export default connect(mapStateToProps, null)(UserProfilePage);
+// export default connect(mapStateToProps, null)(UserProfilePage);
+
+export default UserProfilePage;

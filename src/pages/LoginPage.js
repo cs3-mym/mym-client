@@ -98,7 +98,9 @@ class LoginPage extends React.Component {
     this.setState({
       submitted: true
     });
-
+    setTimeout(() => {
+      this.props.history.push('/welcome')
+    }, 2500);
     // console.log(email);
     // console.log(password);
     // console.log(serverUri);
@@ -147,15 +149,16 @@ class LoginPage extends React.Component {
         <form style={{width: "320px", boxShadow: "2px 2px 2px #888888", background: "lightgray", padding: "10px"}} action='' onSubmit={this.handleSubmit.bind(this)}>
           <TextField
             label='Email'
-            placeholder="not secure"
+            placeholder="Email"
             autoComplete='off'
             name='email'
           />
           <TextField
             label='Password'
-            placeholder="not secure"
+            placeholder="Password"
             autoComplete='off'
             name='password'
+            type='password'
           />
           <PrimaryButton type='submit'>Submit</PrimaryButton>
           <DefaultButton href={home}>Home</DefaultButton>
@@ -175,7 +178,7 @@ class LoginPage extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    token: state
+    token: state.token
   };
 }
 

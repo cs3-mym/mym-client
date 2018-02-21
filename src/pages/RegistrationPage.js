@@ -165,12 +165,15 @@ class RegistrationPage extends React.Component {
               placeholder="not secure"
               autoComplete='off'
               name='password'
+              type="password"
             />
             <TextField
               label='Confirm Password'
               placeholder="not secure"
               autoComplete='off'
               name='password2'
+              type="password"
+
             />
             <PrimaryButton type='submit'>Submit</PrimaryButton>
             <DefaultButton href={home}>Home</DefaultButton>
@@ -191,7 +194,7 @@ class RegistrationPage extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    token: state
+    token: state.token
   };
 }
 

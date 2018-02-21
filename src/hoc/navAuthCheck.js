@@ -38,7 +38,7 @@ const navAuthWrapper = (ComposedComponent) => {
 
   const mapStateToProps = (state) => {
     return {
-      token: state
+      token: state.token
     };
   }
 

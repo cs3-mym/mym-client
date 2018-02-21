@@ -13,6 +13,7 @@ import RequireAuth from './hoc/authCheck.js';
 
 // import Navigation from './components/Navigation/Navigation.js';
 import Navigation2 from './components/Navigation/Navigation2.js';
+import BottomNav from './components/BottomNav/BottomNav2.js';
 
 // import HomePage from './pages/HomePage.js';
 import WelcomePage from './pages/WelcomePage.js';
@@ -38,6 +39,7 @@ import MessageDetails from './pages/MessageDetailsPage.js';
 import RequestDetails from './pages/RequestDetailsPage.js';
 import InviteDetails from './pages/InviteDetailsPage.js';
 
+
 // import SignInPage from './pages/SignInPage.js';
 // import DefaultPage from './pages/DefaultPage.js';
 // import ProjectSearchPage from './pages/ProjectSearch.js';
@@ -46,14 +48,17 @@ import InviteDetails from './pages/InviteDetailsPage.js';
 // import ProjectSearch2 from './pages/ProjectSearch2.js';
 
 const Navigation = NavAuth(Navigation2);
+const Tools = NavAuth(BottomNav);
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <Navigation/>
+        <Tools/>
         <Route exact path="/" component={HomePage2}/>
-        <Route exact path="/login" component={LoginPage}/>
+        <Route exact path="/login" render={(props) => <LoginPage {...props}/>}/>
+        {/* <Route exact path="/login" component={LoginPage}/> */}
         <Route exact path="/signup" component={RegistrationPage}/>
         <Route exact path="/workbench" component={RequireAuth(WorkbenchPage)}/>
         <Route exact path="/welcome" component={RequireAuth(WelcomePage)}/>

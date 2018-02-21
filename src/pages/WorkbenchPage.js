@@ -17,6 +17,10 @@ const textStyle = {
   color: "white"
 }
 
+const selectStyle={
+  marginBottom: "10px"
+}
+
 class WorkbenchPage extends React.Component {
 
   constructor(props) {
@@ -56,7 +60,7 @@ class WorkbenchPage extends React.Component {
     return (
       <div style={pageStyle}>
         <h2 style={textStyle}>Workbench</h2>
-        <select value={this.state.choice} onChange={this.changeType.bind(this)}>
+        <select style={selectStyle} value={this.state.choice} onChange={this.changeType.bind(this)}>
           <option value="project" >Project</option>
           <option value="discussion" >Discussion</option>
           <option value="technology" >Technology</option>

@@ -1,9 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 
-import {
-  connect
-} from 'react-redux';
+// import {
+//   connect
+// } from 'react-redux';
 
 import {
   Link
@@ -72,8 +72,8 @@ class DiscussionDetailsPage extends React.Component {
   }
 
   componentDidMount() {
-    this._getComments();
     this._getDiscussion();
+    this._getComments();
   }
 
   _getDiscussion() {
@@ -99,7 +99,7 @@ class DiscussionDetailsPage extends React.Component {
     const options = {
       options: {
         query: {
-          discussion: this.state.discussion._id
+          discussion: this.props.match.params.discussionID
         },
         populate: [{
           path: 'from',
@@ -158,10 +158,11 @@ class DiscussionDetailsPage extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    token: state
-  };
-}
-
-export default connect(mapStateToProps, null)(DiscussionDetailsPage);
+// const mapStateToProps = (state) => {
+//   return {
+//     token: state.token
+//   };
+// }
+//
+// export default connect(mapStateToProps, null)(DiscussionDetailsPage);
+export default DiscussionDetailsPage;

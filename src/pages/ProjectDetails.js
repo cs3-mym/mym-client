@@ -1,9 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 
-import {
-  connect
-} from 'react-redux';
+// import {
+//   connect
+// } from 'react-redux';
 
 import {
   Link
@@ -438,10 +438,11 @@ class ProjectDetailsPage extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    token: state
-  };
-}
-
-export default connect(mapStateToProps, null)(ProjectDetailsPage);
+// const mapStateToProps = (state) => {
+//   return {
+//     token: state.token
+//   };
+// }
+//
+// export default connect(mapStateToProps, null)(ProjectDetailsPage);
+export default ProjectDetailsPage;

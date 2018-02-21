@@ -10,14 +10,15 @@ import {
 
 import Restricted from '../components/PrivateRoute/Restricted.js';
 
-export default (ComposedComponent) => {
+export default (ComposedComponent
+) => {
   class requireAuth extends React.Component {
-    componentWillMount() {
-      if (!this.props.token) {
-        // console.log("Testing history.push: NO token");
-        // this.props.push('/');
-      }
-    }
+    // componentWillMount() {
+    //   if (!this.props.token) {
+    // console.log("Testing history.push: NO token");
+    // this.props.push('/');
+    //   }
+    // }
 
     conditionalRender() {
       // console.log(this.props);
@@ -36,7 +37,7 @@ export default (ComposedComponent) => {
 
   const mapStateToProps = (state) => {
     return {
-      token: state
+      token: state.token
     };
   }
 

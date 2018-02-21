@@ -59,10 +59,12 @@ const layoutStyle = {
 }
 const contentContainer = {
   width: "300px",
+  height: "640px",
   background: "darkgray",
   display: "flex",
   flexFlow: "column",
-  padding: "10px"
+  padding: "10px",
+  overflow: "auto"
 }
 
 class InviteModal extends React.Component {
