@@ -5,9 +5,9 @@ import axios from 'axios';
 //   connect
 // } from 'react-redux';
 
-import {
-  Link
-} from 'react-router-dom';
+// import {
+//   Link
+// } from 'react-router-dom';
 
 import {
   DEV_SERVER_URI
@@ -94,7 +94,7 @@ class InvitesPage extends React.Component {
       return (
         <div style={{width: "46%", padding: "20px"}}>
           <h2 style={textStyle}>Invites <button onClick={this._handleRetryButton.bind(this)}>Refresh</button></h2>
-          <InvitesList invites={this.state.invites}/>
+          <InvitesList invites={this.state.invites} token={this.props.token}/>
         </div>
       );
     }

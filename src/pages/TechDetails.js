@@ -14,7 +14,7 @@ import {
 } from '../variables/connections.js';
 
 const getTechPath = 'tech/';
-// const addTechPath = '';
+const addUserFavoriteTech = 'users/favoriteTech';
 
 const defaultTech = {
   name: 'untitled',
@@ -85,18 +85,34 @@ class TechDetailsPage extends React.Component {
       });
   }
 
+  handleAddButton() {
+    const obj = {
+      token: this.props.token,
+      techID: this.state.tech._id
+    }
+
+    axios.post(DEV_SERVER_URI + addUserFavoriteTech, obj)
+      .then((res) => {
+        console.log("Success: Favorite Added");
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }
+
+
   conditionalRender() {
     if (this.state.error) {
       return (
         <div style={cardStyle}>
-          <h3 style={textStyle}>Unable to load item</h3>
+          <h3 style={textStyle}>Unable to load item </h3>
         </div>
       );
     } else {
       return (
         <div style={pageStyle}>
           <div style={cardStyle}>
-            <h3 style={textStyle}>{this.state.tech.name}</h3>
+            <h3 style={textStyle}>{this.state.tech.name} <button onClick={this.handleAddButton.bind(this)}>Add</button></h3>
             <p style={textStyle}> Category: {this.state.tech.category}</p>
             <p style={textStyle}> Type: {this.state.tech.type}</p>
             <p style={textStyle}> Tags: {this.state.tech.tags}</p>
@@ -104,7 +120,6 @@ class TechDetailsPage extends React.Component {
             <p style={textStyle}>{this.state.tech.source}</p>
             <h3 style={textStyle}>Description:</h3>
             <p style={textStyle}>{this.state.tech.description}</p>
-            <button>Add</button>
           </div>
         </div>
       );

@@ -5,9 +5,9 @@ import {
   DEV_SERVER_URI
 } from '../../variables/connections.js';
 
-import {
-  connect
-} from 'react-redux';
+// import {
+//   connect
+// } from 'react-redux';
 
 import {
   Link
@@ -90,10 +90,11 @@ class InviteItem extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    token: state
-  };
-}
+// const mapStateToProps = (state) => {
+//   return {
+//     token: state.token
+//   };
+// }
 
-export default connect(mapStateToProps, null)(InviteItem);
+// export default connect(mapStateToProps, null)(InviteItem);
+export default InviteItem;

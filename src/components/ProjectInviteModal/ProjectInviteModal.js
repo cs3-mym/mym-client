@@ -67,6 +67,15 @@ const contentContainer = {
   overflow: "auto"
 }
 
+const textStyle = {
+  lineHeight: 1,
+  fontSize: "1em"
+}
+
+const headerStyle = {
+  fontSize: "1.6em"
+}
+
 class InviteModal extends React.Component {
 
   constructor(props) {
@@ -170,9 +179,9 @@ class InviteModal extends React.Component {
     return this._filterUsers().map((user, index) => {
       return (
         <div key={index} style={itemStyle}>
-          <h3>{user.username} <Link to={{pathname: `/user/${user.username}`}}>profile</Link> <button onClick={() => this._handleInviteButton(user._id)}>Invite</button></h3>
-          <p>Skills: {user.skills}</p>
-          <p>Interests: {user.interests}</p>
+          <p><Link to={{pathname: `/user/${user.username}`}}>{user.username}</Link> <button onClick={() => this._handleInviteButton(user._id)}>Invite</button></p>
+          <p style={textStyle}>Skills: {user.skills}</p>
+          <p style={textStyle}>Interests: {user.interests}</p>
         </div>
       );
     });

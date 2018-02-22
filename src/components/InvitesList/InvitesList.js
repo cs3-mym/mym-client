@@ -21,7 +21,7 @@ class InvitesList extends React.Component {
 
   mapInvites() {
     return this.filterInvites().map((i, index) => {
-      return <InviteItem key={i._id} invite={i}/>
+      return <InviteItem key={i._id} invite={i} token={this.props.token}/>
     });
   }
 

@@ -12,7 +12,7 @@ const listStyle = {
 
 class RequestsList extends React.Component {
   mapRequests() {
-    console.log(this.props.requests);
+    // console.log(this.props.requests);
     return this.props.requests.map((r, index) => {
       return <RequestItem key={index} request={r}/>;
     });

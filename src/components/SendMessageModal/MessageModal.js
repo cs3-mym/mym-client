@@ -77,7 +77,7 @@ class SendMessageModal extends React.Component {
     this.setState({
       error: false,
       submitted: false,
-      message: '',
+      message: '', 
     });
   }
 
@@ -89,7 +89,7 @@ class SendMessageModal extends React.Component {
             <button onClick={() => this.props.actions._handleCloseModalButton()}>close</button>
             <div style={messageBoxStyle}>
               <h3>Error</h3>
-              <p>Unable to send message to {this.props.username}</p>
+              <p>Unable to send message to {this.props.user.username}</p>
               <button onClick={this._handleRetryButton.bind(this)}>Retry</button>
             </div>
           </div>

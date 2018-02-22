@@ -72,6 +72,13 @@ class Chat extends React.Component {
     }
   }
 
+  componentDidMount() {
+    const obj = {
+      token: this.props.token
+    }
+    this._getMe(DEV_SERVER_URI + getMePath, obj);
+  }
+  
   componentWillMount() {
     this.initSocket();
   }
@@ -193,13 +200,6 @@ class Chat extends React.Component {
       console.log("USER_CONNECTED");
       this.state.socket.emit(USER_CONNECTED, this.state.user.username);
     }
-  }
-
-  componentDidMount() {
-    const obj = {
-      token: this.props.token
-    }
-    this._getMe(DEV_SERVER_URI + getMePath, obj);
   }
 
   _getMe(path, o) {
@@ -363,7 +363,7 @@ class Chat extends React.Component {
 
     return (
       <div style={tempStyle}>
-        <p>Global Chat</p>
+        <h3>Global Chat</h3>
         {this.conditionalConnected()}
 
       </div>

@@ -50,7 +50,7 @@ class BottomNav2 extends React.Component {
       showChat: false,
       showCommand: false,
       showTweet: false,
-      showStatus: false
+      showStatus: false,
     }
   }
 
@@ -111,7 +111,7 @@ class BottomNav2 extends React.Component {
 
   conditionalTweet() {
     if (this.state.showTweet) {
-      return <TweetArea uiColor={this.state.uiColor}/>
+      return <TweetArea uiColor={this.state.uiColor} token={this.props.token} />
     }
   }
 
@@ -126,7 +126,7 @@ class BottomNav2 extends React.Component {
       setUiColor: this.setUiColor.bind(this)
     };
     if (this.state.showCommand) {
-      return <CommandArea uiColor={this.state.uiColor} actions={actions}/>
+      return <CommandArea uiColor={this.state.uiColor} actions={actions} token={this.props.token}/>
     }
   }
 

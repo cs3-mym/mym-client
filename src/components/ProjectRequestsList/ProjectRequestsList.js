@@ -26,9 +26,9 @@ class RequestsList extends React.Component {
     return this.props.requests.map((r, index) => {
       return (
         <div key={index} style={itemStyle}>
-          <p style={textStyle}>{r.title}</p>
+          <Link style={textStyle} to={{pathname: `/request/${r._id}`}}>{r.title}</Link>
           <p style={textStyle}>{r.category}</p>
-          <Link style={textStyle} to={{pathname: `/request/${r._id}`}}>more</Link>
+          
         </div>
       );
     });

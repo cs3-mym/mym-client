@@ -8,7 +8,7 @@ const listContainer = {
   flexFlow: "column",
   // alignItems: "center",
   overflow: 'auto',
-  maxHeight: "600px",
+  // maxHeight: "600px",
 }
 
 class MessagesList extends React.Component {

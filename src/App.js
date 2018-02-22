@@ -38,8 +38,9 @@ import UserDetailsPage from './pages/UserDetailsPage.js';
 import MessageDetails from './pages/MessageDetailsPage.js';
 import RequestDetails from './pages/RequestDetailsPage.js';
 import InviteDetails from './pages/InviteDetailsPage.js';
-
-
+import NoteDetails from './pages/NoteDetailsPage.js';
+import FeatureDetails from './pages/FeatureDetailsPage.js';
+import ContributionDetails from './pages/ContributionDetailsPage.js';
 // import SignInPage from './pages/SignInPage.js';
 // import DefaultPage from './pages/DefaultPage.js';
 // import ProjectSearchPage from './pages/ProjectSearch.js';
@@ -73,6 +74,9 @@ class App extends Component {
         <Route exact path="/message/:messageID" component={RequireAuth(MessageDetails)}/>
         <Route exact path="/request/:requestID" component={RequireAuth(RequestDetails)}/>
         <Route exact path="/invite/:inviteID" componenet={RequireAuth(InviteDetails)}/>
+        <Route exact path="/note/:noteID" component={RequireAuth(NoteDetails)}/>
+        <Route exact path="/feature/:featureID" component={RequireAuth(FeatureDetails)}/>
+        <Route exact path="/contribution/:contributionID" component={RequireAuth(ContributionDetails)}/>
 
         <Route exact path="/requests/search" component={RequireAuth(RequestsDepot)}/>
         <Route exact path="/users/search" component={RequireAuth(UserDepot)}/>

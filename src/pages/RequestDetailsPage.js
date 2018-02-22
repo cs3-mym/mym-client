@@ -76,6 +76,7 @@ class RequestDetailsPage extends React.Component {
       .then((res) => {
         this.setState({
           request: res.data,
+          error: false
         });
       })
       .catch((err) => {

@@ -17,6 +17,8 @@ import {
 import CreateRequestModal from '../components/CreateRequestModal/CreateRequestModal.js';
 import RequestsList from '../components/ProjectRequestsList/ProjectRequestsList.js';
 import InviteModal from '../components/ProjectInviteModal/ProjectInviteModal.js';
+import FeaturesList from '../components/ProjectFeaturesList/FeaturesList.js';
+import NotesList from '../components/ProjectNotesList/NotesList.js';
 
 const textStyle = {
   color: 'white'
@@ -25,6 +27,11 @@ const textStyle = {
 const getProjectPath = 'projects/';
 const joinProjectPath = 'projects/join';
 const getRequestsPath = 'requests/read';
+const getFeaturesPath = 'features/read';
+// const createFeaturePath = 'features/create';
+const getNotesPath = 'notes/read';
+// const createNotePath = 'notes/create';
+const followProjectPath = 'users/followProject';
 
 const errorTextStyle = {
   color: "white",
@@ -56,7 +63,6 @@ const defaultItemStyle = {
   margin: "0 5px 5px 5px"
 }
 
-
 const pageContainer = {
   width: "100%",
   background: "darkgray",
@@ -69,6 +75,12 @@ const pageStyle = {
   display: "flex",
   background: "#273259"
 };
+
+const projectActionsContainer = {
+  display: "flex",
+  alignItems: "center"
+}
+
 const leftContainer = {
   width: "340px",
   display: "flex",
@@ -86,6 +98,8 @@ const titleContainer = {
   overflow: "auto"
 };
 const githubContainer = {
+  display: "flex",
+  alignItems: "center",
   height: "60px",
   width: "100%",
   marginBottom: "10px",
@@ -120,9 +134,12 @@ const rightContainer = {
   margin: "10px"
 };
 const bannerContainer = {
+  display: "flex",
+  alignItems: "center",
   width: "100%",
   height: "60px",
   marginBottom: "10px",
+  justifyContent: "space-between",
   color: "white",
   background: "#313e6d",
   boxShadow: "3px 3px #48578e"
@@ -144,17 +161,22 @@ const rightContainer2 = {
   flexFlow: "column"
 };
 const buttonStyle1 = {
-  width: "50px",
+  // width: "50px",
   color: "white",
   background: "rgb(0,112,219)",
   height: "30px"
 };
 const buttonStyle2 = {
-  width: "50px",
+  // width: "50px",
   color: "black",
   background: "lightgray",
   height: "30px"
 };
+
+const membersTitleTextStyle = {
+  marginRight: "14px"
+}
+
 const membersContainer = {
   width: "100%",
   height: "60px",
@@ -166,7 +188,7 @@ const membersContainer = {
 };
 const membersTextContainer = {
   display: "flex",
-  flexFlow: "column",
+  // flexFlow: "column",
   alignItems: "center"
 };
 const technologyContainer = {
@@ -177,7 +199,7 @@ const technologyContainer = {
   background: "#313e6d",
   boxShadow: "3px 3px #48578e"
 };
-const commentsContainer = {
+const notesContainer = {
   width: "100%",
   height: "500px",
   marginBottom: "10px",
@@ -210,6 +232,12 @@ const historyContainer = {
   flexFlow: "column",
   alignItems: "center"
 };
+
+const participantTextStyle = {
+  marginRight: "10px",
+  color: "white"
+}
+
 class ProjectDetailsPage extends React.Component {
 
   constructor(props) {
@@ -221,6 +249,8 @@ class ProjectDetailsPage extends React.Component {
       error: false,
       requestModal: false,
       requests: [],
+      features: [],
+      notes: [],
       inviteModal: false
     }
   }
@@ -231,6 +261,8 @@ class ProjectDetailsPage extends React.Component {
     // });
     this._getProject();
     this._getRequests();
+    this._getNotes();
+    this._getFeatures();
   }
 
   _openModal() {
@@ -299,7 +331,7 @@ class ProjectDetailsPage extends React.Component {
     // console.log(this.state.project.participants);
     return this.state.project.participants.map((part, index) => {
       return (
-        <Link style={textStyle} key={index} to={{ pathname: `/user/${part.username}` }}>{part.username}</Link>
+        <Link style={participantTextStyle} key={index} to={{ pathname: `/user/${part.username}` }}>{part.username}</Link>
       );
     });
   }
@@ -312,7 +344,7 @@ class ProjectDetailsPage extends React.Component {
     const options = {
       options: {
         query: {
-          project: this.state.project._id
+          project: this.props.match.params.projectID
         },
         select: 'title category'
       }
@@ -323,6 +355,64 @@ class ProjectDetailsPage extends React.Component {
         this.setState({
           requests: res.data
         });
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }
+
+  _getFeatures() {
+    const options = {
+      options: {
+        query: {
+          project: this.props.match.params.projectID
+        },
+        // select: 'title category'
+      }
+    };
+    console.log(options);
+
+    axios.post(DEV_SERVER_URI + getFeaturesPath, options)
+      .then((res) => {
+        this.setState({
+          features: res.data
+        });
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }
+
+  _getNotes() {
+    const options = {
+      options: {
+        query: {
+          project: this.props.match.params.projectID
+        },
+        // select: 'title description category'
+      }
+    };
+
+    axios.post(DEV_SERVER_URI + getNotesPath, options)
+      .then((res) => {
+        this.setState({
+          notes: res.data
+        });
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }
+
+  handleFollowButton() {
+    const obj = {
+      token: this.props.token,
+      projectID: this.state.project._id
+    }
+
+    axios.post(DEV_SERVER_URI + followProjectPath, obj)
+      .then((res) => {
+        console.log("Success: Following project");
       })
       .catch((err) => {
         console.log(err.message);
@@ -344,62 +434,53 @@ class ProjectDetailsPage extends React.Component {
       return (
         <div style={pageStyle}>
           <div style={leftContainer}>
-            <div style={titleContainer}>Title: {this.state.project.title} - {this.state.project.status} - {this.state.project.visibility} - {this.state.project.access} - {this.state.project.category}</div>
-            <div style={githubContainer}>Github Link: {this.state.project.github}</div>
-            <div style={descriptionContainer}>Description: {this.state.project.description}</div>
+            <div style={titleContainer}><h4>{this.state.project.title}</h4>  - {this.state.project.status} - {this.state.project.visibility} - {this.state.project.access} - {this.state.project.category}</div>
+            <div style={githubContainer}><p>{this.state.project.github}</p></div>
+            <div style={descriptionContainer}><h4>Description</h4> {this.state.project.description}</div>
             <div style={featuresContainer}>
-              <h3>Features</h3>
-              <div style={defaultItemStyle}>Feature 1</div>
-              <div style={defaultItemStyle}>Feature 2</div>
-              <div style={defaultItemStyle}>Feature 3</div>
-              <div style={defaultItemStyle}>Feature 4</div>
-              <div style={defaultItemStyle}>Feature 5</div>
+              <h3>Features <button onClick={this._getFeatures.bind(this)}>Refresh</button></h3>
+              <FeaturesList features={this.state.features} token={this.props.token} projectID={this.state.projectID}/>
             </div>
           </div>
           <div style={rightContainer}>
             <div style={bannerContainer}>
-              Banner: {this.state.project.bannerMessage} - {this.state.project.tags}
-              <button onClick={this._joinProject.bind(this)} style={buttonStyle1}>Join</button>
-              <button onClick={this._getProject.bind(this)} style={buttonStyle2}>Refresh</button>
-              <button onClick={this._openModal.bind(this)} style={buttonStyle1}>New Request</button>
-              <button onClick={this._openInviteModal.bind(this)} style={buttonStyle2}>Invite</button>
-              <button style={buttonStyle1}>Follow</button>
+              <h4>{this.state.project.bannerMessage} </h4>
+              <p>{this.state.project.tags}</p>
+              <div style={projectActionsContainer}>
+                <button onClick={this._joinProject.bind(this)} style={buttonStyle1}>Join</button>
+                <button onClick={this._getProject.bind(this)} style={buttonStyle2}>Refresh</button>
+                <button onClick={this._openModal.bind(this)} style={buttonStyle1}>New Request</button>
+                <button onClick={this._openInviteModal.bind(this)} style={buttonStyle2}>Invite</button>
+                <button onClick={this.handleFollowButton.bind(this)} style={buttonStyle1}>Follow</button>
+              </div>
             </div>
             <div style={rightBottomContainer}>
               <div style={rightContainer1}>
                 <div style={membersContainer}>
-                  Members
                   <div style={membersTextContainer}>
+                    <h4 style={membersTitleTextStyle}>Members</h4>
                     {this.mapParticipants()}
                   </div>
                 </div>
-                <div style={technologyContainer}>Tech: {this.state.project.technologies}</div>
-                <div style={commentsContainer}>
-                  <h3>Comments</h3>
-                  <div style={defaultItemStyle}>User1: Lorem ipsum valtro engson patrut</div>
-                  <div style={defaultItemStyle}>User2: Lorem ipsum valtro engson patrut</div>
-                  <div style={defaultItemStyle}>User3: Lorem ipsum valtro engson patrut</div>
-                  <div style={defaultItemStyle}>User1: Lorem ipsum valtro engson patrut</div>
-                  <div style={defaultItemStyle}>User2: Lorem ipsum valtro engson patrut</div>
-                  <div style={defaultItemStyle}>User3: Lorem ipsum valtro engson patrut</div>
-                  <div style={defaultItemStyle}>User1: Lorem ipsum valtro engson patrut</div>
-                  <div style={defaultItemStyle}>User1: Lorem ipsum valtro engson patrut</div>
-
+                <div style={technologyContainer}><h3>Tech</h3> {this.state.project.technologies}</div>
+                <div style={notesContainer}>
+                  <h3>Notes <button onClick={this._getNotes.bind(this)}>refresh</button></h3>
+                  <NotesList notes={this.state.notes} token={this.props.token} projectID={this.state.projectID}/>
                 </div>
               </div>
               <div style={rightContainer2}>
                 <div style={otherContainer}>
-                  <p style={textStyle}>Requests <button onClick={this._getRequests.bind(this)}>refresh</button></p>
+                  <h3>Requests <button onClick={this._getRequests.bind(this)}>refresh</button></h3>
                   <RequestsList requests={this.state.requests}/>
                 </div>
                 <div style={historyContainer}>
                   <h3>History</h3>
-                  <div style={defaultItemStyle}>Event: User 1 added feature</div>
-                  <div style={defaultItemStyle}>Event: User 2 submitted contribution</div>
-                  <div style={defaultItemStyle}>Event: User 1 added feature</div>
-                  <div style={defaultItemStyle}>Event: User 2 submitted contribution</div>
-                  <div style={defaultItemStyle}>Event: User 1 added feature</div>
-                  <div style={defaultItemStyle}>Event: User 2 submitted contribution</div>
+                  <div style={defaultItemStyle}>User 1 added feature</div>
+                  <div style={defaultItemStyle}>User 2 submitted contribution</div>
+                  <div style={defaultItemStyle}>User 3 added feature</div>
+                  <div style={defaultItemStyle}>User 1 submitted contribution</div>
+                  <div style={defaultItemStyle}>User 2 added feature</div>
+                  <div style={defaultItemStyle}>User 3 submitted contribution</div>
                 </div>
               </div>
             </div>

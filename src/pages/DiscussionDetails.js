@@ -18,7 +18,7 @@ import {
 
 const getDiscussionPath = 'discussion/';
 const getCommentsForDiscussionPath = 'comments/find';
-// const addDiscussionPath = '';
+const followDiscussionPath = 'users/followDiscussion';
 
 const defaultDiscussion = {
   title: 'untitled',
@@ -127,6 +127,21 @@ class DiscussionDetailsPage extends React.Component {
     this._getComments();
   }
 
+  handleFollowButton () {
+    const obj = {
+      token: this.props.token,
+      discussionID: this.state.discussion._id
+    }
+
+    axios.post(DEV_SERVER_URI + followDiscussionPath, obj)
+      .then((res) => {
+        console.log("Success: Followed Discussion");
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }
+
   conditionalStatus() {
     if (this.state.errorComments) {
       return <p style={textStyle}>unable to load items</p>;
@@ -139,7 +154,7 @@ class DiscussionDetailsPage extends React.Component {
         <Link style={textStyle} to="/discussions/search">back</Link>
         <div style={pageStyle}>
           <div style={cardStyle}>
-            <h3 style={textStyle}>{this.state.discussion.title}</h3>
+            <h3 style={textStyle}>{this.state.discussion.title} <button onClick={this.handleFollowButton.bind(this)}>Follow</button></h3>
             <p style={textStyle}>Description: {this.state.discussion.description}</p>
             <p style={textStyle}>Objectives: {this.state.discussion.objectives}</p>
             <p style={textStyle}>Visibility: {this.state.discussion.visibility} Access: {this.state.discussion.access}</p>
