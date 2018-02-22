@@ -196,7 +196,7 @@ class HomePage extends React.Component {
       <Fabric>
         <div style={menuBarStyle}>
           <div style={{margin: "20px"}}>
-            <p style={{color: "#DFAE3B", fontSize: "2em", fontWeight: "bold"}}>MYM</p>
+            <h1 style={{color: "#DFAE3B", fontSize: "2em", fontWeight: "bold"}}>MYM</h1>
           </div>
           <div style={{margin: "20px"}}>
             <DefaultButton
@@ -220,9 +220,9 @@ class HomePage extends React.Component {
         <div style={billboardContainerStyle}>
           <div style={billboardTextContainerStyle}>
             <div style={mymContainerStyle}>
-              <p style={mymTextStyle}>MAKE</p>
-              <p style={mymTextStyle}>YOUR</p>
-              <p style={mymTextStyle}>MARK</p>
+              <h1 style={mymTextStyle}>MAKE</h1>
+              <h1 style={mymTextStyle}>YOUR</h1>
+              <h1 style={mymTextStyle}>MARK</h1>
             </div>
             {/* <p style={{color: "#28294f", boxShadow: "4px 4px 2px #18192F", background: "#DFAE3B", marginTop: "30px", fontWeight: "bold", width: "500px", fontSize: "1.4em", lineHeight: "1", overflowWrap: "break-word", wordWrap: "break-word", hyphens:"auto"}}>Welcome to the place to find friends, build things, and make history.</p> */}
             {/* <p style={{color: "#DFAE3B", textShadow: "4px 4px #18192F", textAlight: "center", marginTop: "30px", fontWeight: "bold", width: "500px", fontSize: "1.4em", lineHeight: "1", overflowWrap: "break-word", wordWrap: "break-word", hyphens:"auto"}}>Welcome to the place to find friends, build things, and make history.</p> */}
