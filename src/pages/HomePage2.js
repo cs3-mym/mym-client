@@ -1,5 +1,7 @@
 import React from 'react';
 
+import bg from './teamwork.jpg';
+
 import {
   Fabric
 } from 'office-ui-fabric-react/lib/Fabric';
@@ -35,7 +37,16 @@ const menuBarStyle = {
 };
 
 const billboardContainerStyle = {
-  background: "#212a49",
+  // background: "#212a49",
+  backgroundRepeat: "no-repeat",
+  backgroundSize: "cover",
+  backgroundImage: "url(" + bg + ")",
+  height: "560px",
+  width: "100%"
+};
+
+const billboardFilterLayer = {
+  background: "rgba(34, 42,72, 0.7)",
   height: "560px",
   width: "100%",
   padding: "20px",
@@ -43,7 +54,7 @@ const billboardContainerStyle = {
   flexFlow: "column",
   alignItems: "center",
   justifyContent: "center"
-};
+}
 
 const billboardTextContainerStyle = {
   display: "flex",
@@ -219,14 +230,16 @@ class HomePage extends React.Component {
         {/* #293859 */}
         <div style={billboardContainerStyle}>
           <div style={billboardTextContainerStyle}>
-            <div style={mymContainerStyle}>
-              <p style={mymTextStyle}>MAKE</p>
-              <p style={mymTextStyle}>YOUR</p>
-              <p style={mymTextStyle}>MARK</p>
-            </div>
-            {/* <p style={{color: "#28294f", boxShadow: "4px 4px 2px #18192F", background: "#DFAE3B", marginTop: "30px", fontWeight: "bold", width: "500px", fontSize: "1.4em", lineHeight: "1", overflowWrap: "break-word", wordWrap: "break-word", hyphens:"auto"}}>Welcome to the place to find friends, build things, and make history.</p> */}
-            {/* <p style={{color: "#DFAE3B", textShadow: "4px 4px #18192F", textAlight: "center", marginTop: "30px", fontWeight: "bold", width: "500px", fontSize: "1.4em", lineHeight: "1", overflowWrap: "break-word", wordWrap: "break-word", hyphens:"auto"}}>Welcome to the place to find friends, build things, and make history.</p> */}
-            <p style={subtitleTextStyle}>Welcome to the place to find friends, build things, and make history.</p>
+            <div style={billboardFilterLayer}>
+              <div style={mymContainerStyle}>
+                <p style={mymTextStyle}>MAKE</p>
+                <p style={mymTextStyle}>YOUR</p>
+                <p style={mymTextStyle}>MARK</p>
+              </div>
+              {/* <p style={{color: "#28294f", boxShadow: "4px 4px 2px #18192F", background: "#DFAE3B", marginTop: "30px", fontWeight: "bold", width: "500px", fontSize: "1.4em", lineHeight: "1", overflowWrap: "break-word", wordWrap: "break-word", hyphens:"auto"}}>Welcome to the place to find friends, build things, and make history.</p> */}
+              {/* <p style={{color: "#DFAE3B", textShadow: "4px 4px #18192F", textAlight: "center", marginTop: "30px", fontWeight: "bold", width: "500px", fontSize: "1.4em", lineHeight: "1", overflowWrap: "break-word", wordWrap: "break-word", hyphens:"auto"}}>Welcome to the place to find friends, build things, and make history.</p> */}
+              <p style={subtitleTextStyle}>Welcome to the place to find friends, build things, and make history.</p>
+            </div>  
           </div>
         </div>
         {/* #ECEDF5 */}
