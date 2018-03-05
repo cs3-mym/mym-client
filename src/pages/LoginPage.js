@@ -23,13 +23,13 @@ import {
 // OLD - Removed after Redux implementation.
 import {
   // DEV_SERVER_URI,
-  DEV_SITE_ROOT,
+  // DEV_SITE_ROOT,
   // PROD_SERVER_URI,
-  // PROD_SITE_ROOT
+  PROD_SITE_ROOT
 } from '../variables/connections.js';
 //
 // let serverUri = DEV_SERVER_URI;
-let home = DEV_SITE_ROOT;
+let home = PROD_SITE_ROOT;
 // if (process.env.NODE_ENV === "production") {
 //   serverUri = PROD_SERVER_URI;
 //   home = PROD_SITE_ROOT;

@@ -9,11 +9,11 @@ import {
 } from 'office-ui-fabric-react/lib/Button';
 
 import {
-  DEV_SITE_ROOT,
+  // DEV_SITE_ROOT,
   PROD_SITE_ROOT
 } from '../variables/connections.js';
 
-let home = DEV_SITE_ROOT;
+let home = PROD_SITE_ROOT;
 
 // if (process.env.NODE_ENV === "production") {
 //   home = PROD_SITE_ROOT;
