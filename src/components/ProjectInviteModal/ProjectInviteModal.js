@@ -18,7 +18,10 @@ const getUsersPath = 'users/find';
 
 const itemStyle = {
   width: "100%",
-  background: "white"
+  background: "white",
+  margin: "4px",
+  border: "2px solid lightgray",
+  // background: "darkgray"
 }
 
 const listStyle = {
@@ -28,12 +31,17 @@ const listStyle = {
   alignItems: "center"
 }
 
-const inputStyle = {
-  background: "#18192F",
-  border: "0px solid",
-  outline: "none",
-  color: "white"
+const buttonStyle = {
+  border: "1px dotted darkgray",
+  background: "darkgray"
 }
+
+// const inputStyle = {
+//   background: "#18192F",
+//   border: "0px solid",
+//   outline: "none",
+//   color: "white"
+// }
 
 const modalStyle = {
   width: "100%",
@@ -49,9 +57,19 @@ const modalStyle = {
   top: '0'
 }
 
-// const textStyle = {
-//   color: "white"
-// }
+const textStyle = {
+  color: "black",
+  margin: "4px 0"
+}
+
+const headerStyle= {
+  fontSize: "1.4em",
+  margin: "8px 0"
+}
+
+const inputStyle = {
+  margin: "4px",
+}
 
 const layoutStyle = {
   width: "100%",
@@ -60,20 +78,11 @@ const layoutStyle = {
 const contentContainer = {
   width: "300px",
   height: "640px",
-  background: "darkgray",
+  background: "#888888",
   display: "flex",
   flexFlow: "column",
   padding: "10px",
   overflow: "auto"
-}
-
-const textStyle = {
-  lineHeight: 1,
-  fontSize: "1em"
-}
-
-const headerStyle = {
-  fontSize: "1.6em"
 }
 
 class InviteModal extends React.Component {
@@ -179,7 +188,7 @@ class InviteModal extends React.Component {
     return this._filterUsers().map((user, index) => {
       return (
         <div key={index} style={itemStyle}>
-          <p><Link to={{pathname: `/user/${user.username}`}}>{user.username}</Link> <button onClick={() => this._handleInviteButton(user._id)}>Invite</button></p>
+          <p style={textStyle}><Link style={textStyle} to={{pathname: `/user/${user.username}`}}>{user.username}</Link> <button style={buttonStyle} onClick={() => this._handleInviteButton(user._id)}>Invite</button></p>
           <p style={textStyle}>Skills: {user.skills}</p>
           <p style={textStyle}>Interests: {user.interests}</p>
         </div>
@@ -219,8 +228,8 @@ class InviteModal extends React.Component {
           <button onClick={() => this.props.actions._closeInviteModal()}>close</button>
           <div style={contentContainer}>
             <div style={listStyle}>
-              <h3>Send Invite</h3>
-              <input onChange={this._inputOnChange.bind(this)} value={this.state.input}></input>
+              <h3 style={headerStyle}>Send Invite</h3>
+              <input style={inputStyle} onChange={this._inputOnChange.bind(this)} value={this.state.input}></input>
               {this.mapUsers()}
             </div>
           </div>

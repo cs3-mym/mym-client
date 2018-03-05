@@ -10,7 +10,8 @@ const itemStyle = {
   background: "#18192F",
   display: "flex",
   alignItems: "center",
-  justifyContent: "space-between"
+  justifyContent: "space-between",
+  padding: "15px"
 };
 
 const textStyle = {

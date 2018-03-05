@@ -13,8 +13,8 @@ const listContainer = {
 
 class MessagesList extends React.Component {
   mapMessages() {
-    return this.props.messages.map((m) => {
-      return <MessageItem key={m.id} author={m.author} message={m.message}/>
+    return this.props.messages.map((m, index) => {
+      return <MessageItem key={index} num={index} author={m.author} message={m.message}/>
     });
   }
 

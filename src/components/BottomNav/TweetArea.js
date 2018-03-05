@@ -18,10 +18,26 @@ const mainContainer = {
   padding: "10px"
 }
 
-const textStyle= {
+const textStyle = {
   lineHeight: 1,
   fontSize: "1em",
-  margin: 0
+  margin: "5px 0"
+}
+
+const textStyle1 = {
+  lineHeight: 1,
+  fontSize: "1em",
+  margin: "3px 0",
+  background: "lightgray",
+  padding: "3px"
+}
+
+const textStyle2 = {
+  lineHeight: 1,
+  fontSize: "1em",
+  margin: "3px 0",
+  background: "darkgray",
+  padding: "3px"
 }
 
 const usernameStyle = {
@@ -79,8 +95,15 @@ class TweetArea extends React.Component {
 
   mapTweets() {
     return this.state.tweets.map((tweet, index) => {
+      let st;
+
+      if (index %2=== 0) {
+        st = textStyle1;
+      } else {
+        st = textStyle2
+      }
       return (
-        <p style={textStyle} key={index}>({tweet.likes.length.toString()}) {tweet.message} <strong style={usernameStyle}> by {tweet.creator.username}</strong><button onClick={() => this.likeTweet(tweet)}>like</button></p>
+        <p style={st} key={index}>({tweet.likes.length.toString()}) {tweet.message} <strong style={usernameStyle}> by {tweet.creator.username}</strong><button onClick={() => this.likeTweet(tweet)}>like</button></p>
       );
     })
   }

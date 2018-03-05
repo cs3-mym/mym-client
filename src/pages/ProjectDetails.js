@@ -56,11 +56,18 @@ const defaultProject = {
   history: "n/a"
 }
 
+const headerStyle = {
+  color: "white",
+  lineHeight: 1,
+  fontSize: "1.4em",
+  margin: "6px 0"
+}
+
 const defaultItemStyle = {
   width: "100%",
   height: "30px",
   // border: "2px solid blue",
-  margin: "0 5px 5px 5px"
+  margin: "4px 0"
 }
 
 const pageContainer = {
@@ -95,7 +102,8 @@ const titleContainer = {
   color: "white",
   background: "#313e6d",
   boxShadow: "3px 3px #48578e",
-  overflow: "auto"
+  overflow: "auto",
+  padding: "0 10px"
 };
 const githubContainer = {
   display: "flex",
@@ -105,7 +113,8 @@ const githubContainer = {
   marginBottom: "10px",
   color: "white",
   background: "#313e6d",
-  boxShadow: "3px 3px #48578e"
+  boxShadow: "3px 3px #48578e",
+  padding: "10px"
 };
 const descriptionContainer = {
   height: "140px",
@@ -113,7 +122,8 @@ const descriptionContainer = {
   marginBottom: "10px",
   color: "white",
   background: "#313e6d",
-  boxShadow: "3px 3px #48578e"
+  boxShadow: "3px 3px #48578e",
+  padding: "10px"
 };
 const featuresContainer = {
   height: "500px",
@@ -124,7 +134,8 @@ const featuresContainer = {
   boxShadow: "3px 3px #48578e",
   display: "flex",
   flexFlow: "column",
-  alignItems: "center"
+  // alignItems: "center",
+  padding: "15px"
 };
 
 const rightContainer = {
@@ -142,7 +153,8 @@ const bannerContainer = {
   justifyContent: "space-between",
   color: "white",
   background: "#313e6d",
-  boxShadow: "3px 3px #48578e"
+  boxShadow: "3px 3px #48578e",
+  padding: "10px"
 };
 const rightBottomContainer = {
   width: "100%",
@@ -163,15 +175,27 @@ const rightContainer2 = {
 const buttonStyle1 = {
   // width: "50px",
   color: "white",
-  background: "rgb(0,112,219)",
-  height: "30px"
+  // background: "rgb(0,112,219)",
+  background: "#212a49",
+  height: "30px",
+  marginRight: "5px"
 };
 const buttonStyle2 = {
   // width: "50px",
-  color: "black",
-  background: "lightgray",
-  height: "30px"
+  // color: "black",
+  color: "white",
+  // background: "lightgray",
+  background: "#212a49",
+  height: "30px",
+  marginRight: "6px"
 };
+
+const buttonStyle3 = {
+  background: "#212a49",
+  borderRadius: "0",
+  color: "white",
+  border: "1px solid white"
+}
 
 const membersTitleTextStyle = {
   marginRight: "14px"
@@ -184,7 +208,8 @@ const membersContainer = {
   color: "white",
   background: "#313e6d",
   boxShadow: "3px 3px #48578e",
-  overflow: "auto"
+  overflow: "auto",
+  padding: "10px"
 };
 const membersTextContainer = {
   display: "flex",
@@ -197,7 +222,8 @@ const technologyContainer = {
   marginBottom: "10px",
   color: "white",
   background: "#313e6d",
-  boxShadow: "3px 3px #48578e"
+  boxShadow: "3px 3px #48578e",
+  padding: "10px"
 };
 const notesContainer = {
   width: "100%",
@@ -208,18 +234,20 @@ const notesContainer = {
   boxShadow: "3px 3px #48578e",
   display: "flex",
   flexFlow: "column",
-  alignItems: "center"
+  // alignItems: "center",
+  padding: "15px"
 };
 
 //TODO: This is probbably where requests will go.
 const otherContainer = {
   width: "100%",
-  height: "210px",
+  height: "380px",
   marginBottom: "10px",
   color: "white",
   background: "#313e6d",
   boxShadow: "3px 3px #48578e",
-  overflow: "auto"
+  overflow: "auto",
+  padding: "15px"
 };
 const historyContainer = {
   width: "100%",
@@ -230,7 +258,8 @@ const historyContainer = {
   boxShadow: "3px 3px #48578e",
   display: "flex",
   flexFlow: "column",
-  alignItems: "center"
+  // alignItems: "center",
+  padding: "15px"
 };
 
 const participantTextStyle = {
@@ -434,17 +463,17 @@ class ProjectDetailsPage extends React.Component {
       return (
         <div style={pageStyle}>
           <div style={leftContainer}>
-            <div style={titleContainer}><h4>{this.state.project.title}</h4>  - {this.state.project.status} - {this.state.project.visibility} - {this.state.project.access} - {this.state.project.category}</div>
+            <div style={titleContainer}><h4 style={headerStyle}>{this.state.project.title}</h4>  - {this.state.project.status} - {this.state.project.visibility} - {this.state.project.access} - {this.state.project.category}</div>
             <div style={githubContainer}><p>{this.state.project.github}</p></div>
-            <div style={descriptionContainer}><h4>Description</h4> {this.state.project.description}</div>
+            <div style={descriptionContainer}><h4 style={headerStyle}>Description</h4> {this.state.project.description}</div>
             <div style={featuresContainer}>
-              <h3>Features <button onClick={this._getFeatures.bind(this)}>Refresh</button></h3>
+              <h3 style={headerStyle}>Features <button style={buttonStyle3} onClick={this._getFeatures.bind(this)}>Refresh</button></h3>
               <FeaturesList features={this.state.features} token={this.props.token} projectID={this.state.projectID}/>
             </div>
           </div>
           <div style={rightContainer}>
             <div style={bannerContainer}>
-              <h4>{this.state.project.bannerMessage} </h4>
+              <h4 style={headerStyle}>{this.state.project.bannerMessage} </h4>
               <p>{this.state.project.tags}</p>
               <div style={projectActionsContainer}>
                 <button onClick={this._joinProject.bind(this)} style={buttonStyle1}>Join</button>
@@ -458,23 +487,24 @@ class ProjectDetailsPage extends React.Component {
               <div style={rightContainer1}>
                 <div style={membersContainer}>
                   <div style={membersTextContainer}>
-                    <h4 style={membersTitleTextStyle}>Members</h4>
+                    {/* <h4 style={membersTitleTextStyle}>Members</h4>headerStyle */}
+                    <h4 style={{...headerStyle, marginRight: "10px"}}>Members</h4>
                     {this.mapParticipants()}
                   </div>
                 </div>
                 <div style={technologyContainer}><h3>Tech</h3> {this.state.project.technologies}</div>
                 <div style={notesContainer}>
-                  <h3>Notes <button onClick={this._getNotes.bind(this)}>refresh</button></h3>
+                  <h3 style={headerStyle}>Notes <button style={buttonStyle3} onClick={this._getNotes.bind(this)}>refresh</button></h3>
                   <NotesList notes={this.state.notes} token={this.props.token} projectID={this.state.projectID}/>
                 </div>
               </div>
               <div style={rightContainer2}>
                 <div style={otherContainer}>
-                  <h3>Requests <button onClick={this._getRequests.bind(this)}>refresh</button></h3>
+                  <h3 style={headerStyle}>Requests <button style={buttonStyle3} onClick={this._getRequests.bind(this)}>refresh</button></h3>
                   <RequestsList requests={this.state.requests}/>
                 </div>
                 <div style={historyContainer}>
-                  <h3>History</h3>
+                  <h3 style={headerStyle}>History</h3>
                   <div style={defaultItemStyle}>User 1 added feature</div>
                   <div style={defaultItemStyle}>User 2 submitted contribution</div>
                   <div style={defaultItemStyle}>User 3 added feature</div>

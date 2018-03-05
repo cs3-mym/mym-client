@@ -5,19 +5,26 @@ import {Link} from 'react-router-dom';
 const itemStyle = {
 	width: "100%",
 	display: "flex",
-	alignItems: "center",
+	// alignItems: "center",
 	flexFlow: "column",
 	justifyContent: "space-between"
  };
 
  const textStyle = {
-	color: "white"
+	color: "white",
+	margin: "4px 6px 4px 0"
  };
 
  const linkStyle = {
 	color: "white"
  };
 
+ const buttonStyle3 = {
+	background: "#212a49",
+	borderRadius: "0",
+	color: "white",
+	border: "1px solid white"
+ }
 
 class NoteItem extends React.Component {
 
@@ -54,7 +61,7 @@ class NoteItem extends React.Component {
 		const { note } = this.props;
 		return (
 			<div style={itemStyle}>
-				<p><Link style={textStyle} to={{pathname: `/note/${note._id}`}}>{note.title}</Link><button onClick={this.handleMoreButton.bind(this)}>{this.conditionalButtonName()}</button></p>
+				<p style={{...textStyle, display: "flex", justifyContent: "space-between", alignItems: "center"}}><Link style={textStyle} to={{pathname: `/note/${note._id}`}}>{note.title}</Link><button style={buttonStyle3} onClick={this.handleMoreButton.bind(this)}>{this.conditionalButtonName()}</button></p>
 				{this.conditionalMessage()}
 			</div>
 		);

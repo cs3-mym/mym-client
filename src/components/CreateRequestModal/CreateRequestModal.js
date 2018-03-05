@@ -32,8 +32,9 @@ const modalStyle = {
 
 const requestBoxStyle = {
   width: "300px",
-  background: "darkgray",
+  background: "#888888",
   display: "flex",
+  alignItems: "center",
   flexFlow: "column",
   padding: "10px"
 }
@@ -44,6 +45,19 @@ const formStyle = {
   flexFlow: "column",
   alignItems: "center"
 };
+
+const textStyle = {
+  margin: "4px 0"
+}
+
+const headerStyle = {
+  fontSize: "1.4em",
+  margin: "8px 0"
+}
+
+const inputStyle = {
+  margin: "4px 0"
+}
 
 // const inputStyle = {
 //   background: "#18192F",
@@ -147,21 +161,21 @@ class CreateRequestModal extends React.Component {
         <div style={modalStyle}>
           <button onClick={() => this.props.actions._closeModal()}>close</button>
           <div style={requestBoxStyle}>
-            <h3>Create Request</h3>
+            <h3 style={headerStyle}>Create Request</h3>
             <p>Project: {this.props.project.title}</p>
             <form style={formStyle}>
-              <p>Name </p>
-              <input type="text" name="title" onChange={this._handleChange.bind(this)} value={this.state.name}/>
-              <p>Description </p>
-              <input type="text" name="description" onChange={this._handleChange.bind(this)} value={this.state.description}/>
-              <p>Technology </p>
-              <input type="text" name="technology" onChange={this._handleChange.bind(this)} value={this.state.technology}/>
-              <p>Category </p>
-              <input type="text" name="category" onChange={this._handleChange.bind(this)} value={this.state.category}/>
-              <p>Type </p>
-              <input type="text" name="type" onChange={this._handleChange.bind(this)} value={this.state.type}/>
-              <p>Tags </p>
-              <input type="text" name="tags" onChange={this._handleChange.bind(this)} value={this.state.tags}/>
+              <p style={textStyle}>Name </p>
+              <input style={inputStyle} type="text" name="title" onChange={this._handleChange.bind(this)} value={this.state.name}/>
+              <p style={textStyle}>Description </p>
+              <input style={inputStyle} type="text" name="description" onChange={this._handleChange.bind(this)} value={this.state.description}/>
+              <p style={textStyle}>Technology </p>
+              <input style={inputStyle} type="text" name="technology" onChange={this._handleChange.bind(this)} value={this.state.technology}/>
+              <p style={textStyle}>Category </p>
+              <input style={inputStyle} type="text" name="category" onChange={this._handleChange.bind(this)} value={this.state.category}/>
+              <p style={textStyle}>Type </p>
+              <input style={inputStyle} type="text" name="type" onChange={this._handleChange.bind(this)} value={this.state.type}/>
+              <p style={textStyle}>Tags </p>
+              <input style={inputStyle} type="text" name="tags" onChange={this._handleChange.bind(this)} value={this.state.tags}/>
               <button onClick={this._handleSubmitButton.bind(this)}>Submit</button>
             </form>
             {/* <textarea value={this.state.message} onChange={this._messageOnChange.bind(this)}></textarea> */}

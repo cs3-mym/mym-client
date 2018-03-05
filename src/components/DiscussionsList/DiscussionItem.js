@@ -13,7 +13,9 @@ const itemStyle = {
   marginBottom: "10px",
   background: "#18192F",
   display: "flex",
-  justifyContent: "space-between"
+  alignItems: "center",
+  justifyContent: "space-between",
+  padding: "15px"
 };
 
 class DiscussionItem extends React.Component {

@@ -13,18 +13,22 @@ const listContainer = {
 	width: "100%",
 	display: "flex",
 	flexFlow: "column",
-	alignItems: "center"
+	// alignItems: "center"
  };
  
  const textStyle = {
-	color: "white"
+	color: "white",
+	lineHeight: 1,
+	fontSize: "1em",
+	margin: "4px 0"
  };
 
  const inputStyle = {
 	background: "#18192F",
 	border: "0px solid",
 	outline: "none",
-	color: "white"
+	color: "white",
+	margin: "4px 0"
  };
 
  const containerStyle = {
@@ -33,6 +37,13 @@ const listContainer = {
 	flexFlow: "column",
 	alignItems: "center"
  };
+
+ const buttonStyle3 = {
+	background: "#212a49",
+	borderRadius: "0",
+	color: "white",
+	border: "1px dotted white"
+ }
 
 class NotesList extends React.Component {
 
@@ -115,7 +126,7 @@ class NotesList extends React.Component {
 					<input type="text" name="description"  onChange={this.handleChange.bind(this)} value={this.state.description} style={inputStyle}/>
 					<p style={textStyle}>Tags </p>
 					<input type="text" name="tags" onChange={this.handleChange.bind(this)} value={this.state.tags} style={inputStyle}/>
-					<button onClick={this.handleSubmit.bind(this)}>Submit</button>
+					<button style={buttonStyle3} onClick={this.handleSubmit.bind(this)}>Submit</button>
 				 </form>
 			 )
 		 }
@@ -138,7 +149,7 @@ class NotesList extends React.Component {
 		  <div style={listContainer}>
 			 {this.mapNotes()}
 			 <div>
-					<button onClick={this.handleAddButton.bind(this)}>Add Note</button>
+					<button style={buttonStyle3} onClick={this.handleAddButton.bind(this)}>Add Note</button>
 					{this.conditionalRender()}				
 				</div>
 		  </div>

@@ -18,7 +18,8 @@ const itemStyle = {
 };
 
 const textStyle = {
-  color: "white"
+  color: "white",
+  margin: "4px 0"
 };
 
 class RequestsList extends React.Component {
@@ -28,7 +29,6 @@ class RequestsList extends React.Component {
         <div key={index} style={itemStyle}>
           <Link style={textStyle} to={{pathname: `/request/${r._id}`}}>{r.title}</Link>
           <p style={textStyle}>{r.category}</p>
-          
         </div>
       );
     });

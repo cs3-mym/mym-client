@@ -14,7 +14,8 @@ const headingStyle = {
   textShadow: "4px 4px #18192F"
 };
 const subheadingStyle = {
-  color: "lightgray"
+  color: "lightgray",
+  margin: "5px 0"
 };
 
 const highlightStyle1 = {

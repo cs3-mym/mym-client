@@ -18,11 +18,15 @@ const listContainer = {
 	width: "100%",
 	display: "flex",
 	alignItems: "center",
-	justifyContent: "space-between"
+	justifyContent: "space-between",
+	// marginBottom: "2px"
  };
  
  const textStyle = {
-	color: "white"
+	color: "white",
+	lineHeight: 1,
+	fontSize: "1em",
+	margin: "4px 0"
  };
 
  const containerStyle = {
@@ -36,8 +40,24 @@ const listContainer = {
 	background: "#18192F",
 	border: "0px solid",
 	outline: "none",
-	color: "white"
+	color: "white",
+	margin: "4px 0"
  };
+
+ const buttonStyle3 = {
+	background: "#212a49",
+	borderRadius: "0",
+	color: "white",
+	border: "1px solid white"
+ }
+
+ const buttonStyle4 = {
+	background: "#212a49",
+	borderRadius: "0",
+	color: "white",
+	border: "1px dotted white",
+	marginTop: "8px"
+ }
 
 class FeaturesList extends React.Component {
 	constructor(props) {
@@ -61,7 +81,7 @@ class FeaturesList extends React.Component {
 		  return (
 			 <div key={index} style={itemStyle}>
 				<p style={textStyle}>({f.upvotes.length.toString()}) <Link style={textStyle} to={{pathname: `/feature/${f._id}`}}>{f.title}</Link> {f.category}</p>				
-				<button onClick={() => this.handleUpvoteButton(f)}>upvote</button>
+				<button style={buttonStyle3} onClick={() => this.handleUpvoteButton(f)}>upvote</button>
 			 </div>
 		  );
 		});
@@ -145,7 +165,7 @@ class FeaturesList extends React.Component {
 					<input type="text" name="category" onChange={this.handleChange.bind(this)} value={this.state.category} style={inputStyle}/>
 					<p style={textStyle}>Tasks</p>
 					<input type="text" name="tasks" onChange={this.handleChange.bind(this)} value={this.state.tasks} style={inputStyle}/>
-					<button onClick={this.handleSubmit.bind(this)}>Submit</button>
+					<button style={buttonStyle4} onClick={this.handleSubmit.bind(this)}>Submit</button>
 				</form>
 			);
 		} 
@@ -154,9 +174,9 @@ class FeaturesList extends React.Component {
 	conditionalRender() {
 		if (this.state.submitted) {
 			if (this.state.error) {
-				return <p style={textStyle}>Unable create feature <button onClick={this.handleRetry.bind(this)}>Retry</button></p>;
+				return <p style={textStyle}>Unable create feature <button style={buttonStyle3} onClick={this.handleRetry.bind(this)}>Retry</button></p>;
 			} else {
-				return <p style={textStyle}>Success feature created <Link to={`/feature/${this.state.feature._id}`}>more</Link> <button onClick={this.handleRetry.bind(this)}>Another</button></p>
+				return <p style={textStyle}>Success feature created <Link to={`/feature/${this.state.feature._id}`}>more</Link> <button style={buttonStyle3} onClick={this.handleRetry.bind(this)}>Another</button></p>
 			}
 		} else {
 			return this.conditionalInput();
@@ -168,7 +188,7 @@ class FeaturesList extends React.Component {
 			<div style={listContainer}>
 				{this.mapFeatures()}
 				<div>
-					<button onClick={this.handleAddButton.bind(this)}>Add Feature</button>
+					<button style={{...buttonStyle4}} onClick={this.handleAddButton.bind(this)}>Add Feature</button>
 					{this.conditionalRender()}				
 				</div>
 			</div>

@@ -24,7 +24,8 @@ const pageStyle = {
 };
 
 const textStyle = {
-  color: "white"
+  color: "white",
+  margin: "4px 0"
 };
 
 const buttonStyle = {
@@ -36,7 +37,8 @@ const inputStyle = {
   background: "#18192F",
   border: "0px solid",
   outline: "none",
-  color: "white"
+  color: "white",
+  margin: "4px 0"
 };
 
 const containerStyle = {
