@@ -5,7 +5,8 @@ const commentStyle = {
   // display: "flex",
   // alignItems: "center",
   background: "#18192F",
-  marginBottom: "5px"
+  marginBottom: "5px",
+  padding: "15px"
 }
 
 const textStyle = {

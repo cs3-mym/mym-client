@@ -12,7 +12,12 @@ const listContainer = {
 }
 
 const itemStyle = {
-  marginRight: "5px"
+  marginRight: "5px",
+  color: "black"
+}
+
+const textStyle = {
+  color: "black"
 }
 
 class UsersList extends React.Component {
@@ -33,7 +38,7 @@ class UsersList extends React.Component {
   render() {
     return (
       <div>
-        <h3>Users</h3>
+        <h3 style={textStyle}>Users</h3>
         {this.mapUsers()}
       </div>
     );

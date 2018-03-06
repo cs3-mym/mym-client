@@ -112,11 +112,14 @@ class MessageItem extends React.Component {
       } else {
         return (
           <div style={basicConatiner}>
-            <p style={textStyle}>From: {this.props.message.from.username}</p>
+            <div style={{display:"flex", justifyContent: "space-between"}}>
+              <p style={textStyle}>From: {this.props.message.from.username} <button onClick={this._handleArchiveButton.bind(this)}>Read / Archive</button></p>
+              <Link style={textStyle} to={{pathname: `/message/${this.props.message._id}`}}>more</Link>
+            </div>
             <p style={textStyle}>{this.props.message.text}</p>
-            <Link style={textStyle} to={{pathname: `/message/${this.props.message._id}`}}>more</Link>
+            
             {/* <button onClick={this._handleDeleteButton.bind(this)}>delete</button> */}
-            <button onClick={this._handleArchiveButton.bind(this)}>Read / Archive</button>
+            
           </div>
         );
       }

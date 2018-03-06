@@ -18,6 +18,10 @@ const itemContainer2 = {
   margin: "3px 0"
 }
 
+const textStyle = {
+  color: "black"
+}
+
 class MessageItem extends React.Component {
   render() {
     // console.log(this.props.message);
@@ -29,7 +33,7 @@ class MessageItem extends React.Component {
     }
     return (
       <div style={st}>
-        <p><Link to={`/user/${this.props.author.username}`}>{this.props.author.username}</Link>: {this.props.message}</p>
+        <p style={textStyle}><Link style={textStyle} to={`/user/${this.props.author.username}`}>{this.props.author.username}</Link>: {this.props.message}</p>
       </div>
     );
   }
